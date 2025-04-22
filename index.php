@@ -36,6 +36,20 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 $routes = [
     '' => 'dashboard',
     'dashboard' => 'dashboard',
+    'login' => 'login',
+    'register' => 'register',
+    'logout' => 'logout',
+
+    //student
+    'permohonan/pelepasan' => 'permohonan_pelepasan',
+    'permohonan/senarai' => 'permohonan_senarai',
+
+
+    //fucntions
+
+    //permohonan
+        'permohonan/senarai_calendar' => 'permohonan_senarai_calendar',
+        'permohonan/request' => 'permohonan_request',
  
 
 ];

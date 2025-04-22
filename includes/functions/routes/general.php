@@ -13,7 +13,7 @@ function login()
     include('includes/server.php');
     // echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
 
-    include 'views/system/login.php';
+    include 'views/system/auth/login.php';
 }
 
 function register()
@@ -22,7 +22,7 @@ function register()
     include('includes/server.php');
     // echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
 
-    include 'views/system/register.php';
+    include 'views/system/auth/register.php';
 }
 
 
@@ -38,7 +38,7 @@ function logout()
     session_destroy(); // Destroy the session
     global $basePath2;
 
-    header("Location: " . $basePath2 . "/signin");
+    header("Location: " . $basePath2 . "/login");
     exit();
 }
 
@@ -68,7 +68,7 @@ function checkLogin()
     if (!isset($_SESSION['user_details'])) {
         global $basePath2;
 
-        header("Location: " . $basePath2 . "/signin");
+        header("Location: " . $basePath2 . "/login");
         exit();
 
     }
@@ -98,14 +98,19 @@ function checkRole()
         $role = $_SESSION['user_details']['role'];
         // Check for different roles
         if ($role == 1) {
-            return 'admin';
+            return 'bppl';
         } elseif ($role == 2) {
-            return 'guide';
+            return 'kb';
         } elseif ($role == 3) {
-            return 'user';
+            return 'lecturer';
+        } elseif ($role == 4) {
+            return 'guard';
+        } elseif ($role == 5) {
+            return 'student';
         }
     }
 
+    echo "<script>console.log(" . json_encode($role) . ");</script>";
 
 }
 
@@ -124,16 +129,16 @@ function dashboard()
     ];
     echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
 
-    if ($role === 'admin') {
+    if ($role == 'student') {
 
-        include 'views/system/admin/dashboard.php';
+    //     include 'views/system/admin/dashboard.php';
 
-    } elseif ($role == 'guide') {
-        include 'views/system/guide/dashboard.php';
+    // } elseif ($role == 'guide') {
+    //     include 'views/system/guide/dashboard.php';
 
-    } else {
+    // } else {
         // echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
-        include 'views/system/user/dashboard.php';
+        include 'views/system/student/dashboard.php';
 
     }
 }

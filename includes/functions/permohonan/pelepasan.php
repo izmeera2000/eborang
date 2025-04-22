@@ -1,0 +1,127 @@
+<?php
+
+if (isset($_POST['fetch_events'])) {
+    $start_utc = $_POST['start'];
+    $end_utc = $_POST['end'];
+
+    // Convert to date format for SQL
+    $start_date = date('Y-m-d', strtotime($start_utc));
+    $end_date = date('Y-m-d', strtotime($end_utc));
+
+    $events = [];
+
+    // Fetch permohonan dates within the given range
+    $sql = "SELECT pd.*, p.status, p.user_id 
+            FROM permohonan_dates pd
+            LEFT JOIN permohonan p ON pd.permohonan_id = p.id
+            WHERE pd.date BETWEEN '$start_date' AND '$end_date'";
+
+    $result = $conn->query($sql);
+
+    // Store events grouped by permohonan_id
+    $event_groups = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $event_date = $row['date'];
+        $start_time = $row['time_start'];
+        $end_time = $row['time_end'];
+        $status = $row['status'];
+        $permohonan_id = $row['permohonan_id'];
+
+        // Determine class based on status
+        $className = 'bg-gradient-success';
+        if ($status == 0) {
+            $className = 'bg-gradient-warning';
+        } elseif ($status == 2) {
+            $className = 'bg-gradient-danger';
+        }
+
+        // If the permohonan_id already exists, check the dates and merge the times correctly
+        if (!isset($event_groups[$permohonan_id])) {
+            // Check if end time is 00:00:00, and if so, set to 23:59:59
+            if ($end_time == "00:00:00") {
+                $end_time = "23:59:59";
+            }
+
+            $event_groups[$permohonan_id] = [
+                'title' => "Permohonan #" . $permohonan_id,
+                'start' => trim(sprintf('%s %s', $event_date, $start_time)),
+                'end' => trim(sprintf('%s %s', $event_date, $end_time)),
+                'permohonan_id' => $permohonan_id,
+                'className' => $className
+            ];
+        } else {
+            // Check the start time - only update if the current event starts earlier
+            $existing_start_time = $event_groups[$permohonan_id]['start'];
+            $new_start_time = trim(sprintf('%s %s', $event_date, $start_time));
+            if (strtotime($new_start_time) < strtotime($existing_start_time)) {
+                $event_groups[$permohonan_id]['start'] = $new_start_time;
+            }
+
+            // Check the end time - only update if the current event ends later
+            $existing_end_time = $event_groups[$permohonan_id]['end'];
+            $new_end_time = trim(sprintf('%s %s', $event_date, $end_time));
+
+            // If the new end time is 00:00:00, set it to 23:59:59
+            if ($end_time == "00:00:00") {
+                $new_end_time = trim(sprintf('%s 23:59:59', $event_date));
+            }
+
+            if (strtotime($new_end_time) > strtotime($existing_end_time)) {
+                $event_groups[$permohonan_id]['end'] = $new_end_time;
+            }
+        }
+    }
+
+    // Convert event groups to a simple array
+    foreach ($event_groups as $event) {
+        $events[] = $event;
+    }
+
+    echo json_encode($events);
+    exit;
+}
+
+
+
+//request pelepasan / tambah
+
+
+if (isset($_POST['permohonan_request'])) {
+
+
+
+    // Make sure to sanitize the inputs
+    $user_id = $_POST['user_id'];
+    $permohonan_type = "pelepasan";
+    $status = 1;
+    $dates = $_POST['dates'];
+    $start_times = $_POST['time_start'];
+    $end_times = $_POST['time_end'];
+    $days = count($dates);
+    $time_slip = 0; // or calculate if needed
+
+    // Insert into `permohonan`
+    $sql = "INSERT INTO permohonan (user_id, permohonan_type, status, days, time_slip) 
+          VALUES ('$user_id', '$permohonan_type', '$status', '$days', '$time_slip')";
+    if (mysqli_query($conn, $sql)) {
+        $permohonan_id = mysqli_insert_id($conn);
+
+        // Insert into `permohonan_dates`
+        for ($i = 0; $i < count($dates); $i++) {
+            $date = mysqli_real_escape_string($conn, $dates[$i]);
+            $time_start = mysqli_real_escape_string($conn, $start_times[$i]);
+            $time_end = mysqli_real_escape_string($conn, $end_times[$i]);
+
+            $sql2 = "INSERT INTO permohonan_dates (permohonan_id, date, time_start, time_end)
+                   VALUES ($permohonan_id, '$date', '$time_start', '$time_end')";
+            mysqli_query($conn, $sql2);
+        }
+
+        // Redirect after success
+        header("Location: " . $basePath2 . "/permohonan/pelepasan");
+        exit();
+    }
+}
+
+

@@ -39,7 +39,7 @@ if (isset($_POST['register'])) {
          
     }
 
-  $role = 3;
+  $role = 5;
 
   if (!empty($_POST['password1']) && !empty($_POST['password2'])) {
 
