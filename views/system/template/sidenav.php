@@ -73,6 +73,12 @@
                 <span class="sidenav-normal"> Pelepasan </span>
               </a>
             </li>
+            <li class="nav-item ">
+              <a class="nav-link " href="<?php echo $rootPath; ?>/permohonan/senarai">
+                <span class="sidenav-mini-icon"> S </span>
+                <span class="sidenav-normal"> Senarai </span>
+              </a>
+            </li>
 
           </ul>
         </div>
