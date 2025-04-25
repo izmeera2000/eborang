@@ -49,6 +49,9 @@ function permohonan_senarai()
     ];
     echo "<script>console.log(" . json_encode($role) . ");</script>";
 
+
+
+
     if ($role === 'student') {
 
  
@@ -79,5 +82,10 @@ function permohonan_request()
  
 
 }
+function permohonan_auth()
+{
+    include('includes/server.php');
+ 
 
+}
  

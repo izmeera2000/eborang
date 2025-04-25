@@ -26,6 +26,7 @@ include_once('functions/routes/general.php');
 
 
 include('functions/permohonan/pelepasan.php');
+include('functions/permohonan/auth.php');
 
 
 //profile

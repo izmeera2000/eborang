@@ -53,31 +53,38 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST"  enctype="multipart/form-data">
-                                <input type="hidden" name="user_id" value="1"> <!-- example user -->
-                                <input type="hidden" name="permohonan_type" value="2"> <!-- example type -->
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Lecturer</label>
-                                    <select class="form-control" name="lecturer_id"  required>
-                                        <option>1</option>
+                            <form action="" method="POST" enctype="multipart/form-data">
 
-                                    </select>
+                                <div class="form-group">
+                                    <input type="hidden" id="permohonan_id" name="permohonan_id"> <!-- example user -->
+
+                                    <label for="exampleFormControlSelect1" class="mt-2">Jenis Permohonan </label>
+                                    <input class="form-control" type="text" id="permohonan_type">
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Tempat </label>
-                                    <input class="form-control" type="text" name="tempat" required>
+                                    <input class="form-control" type="text" id="lecturer_id">
+
+                                    <label for="exampleFormControlSelect1" class="mt-2">Tempat </label>
+                                    <input class="form-control" type="text" id="tempat">
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Tujuan </label>
-                                    <input class="form-control" type="text" name="tujuan" required>
+                                    <input class="form-control" type="text" id="tujuan">
 
-                                    <label for="exampleFormControlSelect1" class="mt-2">Bukti </label>
-                                    <input class="form-control" type="file" name="bukti" required>
-                                       
+                                    <!-- <label for="exampleFormControlSelect1" class="mt-2">Bukti </label>
+                                    <input class="form-control" type="file" id="bukti" required> -->
+
+
+
                                 </div>
-                                <div id="time-container"></div>
+                                <div id="auth_button">
 
 
+                                    <button type="submit" class="btn btn-danger"
+                                        name="permohonan_auth_decline">Decline</button>
+                                    <button type="submit" class="btn btn-primary"
+                                        name="permohonan_auth_accept">Confirm</button>
 
-                                <button type="submit" class="btn btn-primary" name="permohonan_request">Confirm</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -88,7 +95,7 @@
             <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/footer2.php"); ?>
 
         </div>
- 
+
 
     </main>
 
@@ -139,7 +146,7 @@
                     type: "POST",
                     dataType: "json",
                     data: {
-                        fetch_events: true,
+                        senarai_permohonan_calendar: true,
                         start: fetchInfo.startStr,
                         end: fetchInfo.endStr,
                     }, // Secure POST request
@@ -153,68 +160,60 @@
                     }
                 });
             },
-            selectable: true,
+            // selectable: true,
             // eventOverlap: false,
 
-            select: function (info) {
+            eventClick: function (info) {
                 const existingEvents = calendar.getEvents();
-                const selectedStart = info.start;
-                const selectedEnd = info.end;
+                const selectedStart = info.event.start;
+                const selectedEnd = info.event.end;
 
-                const overlapping = existingEvents.some(event => {
-                    return (
-                        selectedStart < event.end &&
-                        selectedEnd > event.start
-                    );
-                });
                 var modal = new bootstrap.Modal(document.getElementById('eventModal'));
                 $('#time-container').empty();
 
-                let currentDate = new Date(info.start);
-                const endDate = new Date(info.end); // exclusive
 
-                // Optional: display selected range
-                const startStr = formatDate(currentDate);
-                const endStr = formatDate(new Date(endDate.getTime() - 86400000)); // subtract 1 day
-                console.log(`Selected: ${startStr} to ${endStr}`);
+                console.log(`Selected: ${selectedStart} to ${selectedEnd}`);
 
 
-                if (overlapping) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Pertindihan Masa',
-                        text: 'Slot yang dipilih bertindih dengan permohonan sedia ada.',
-                    });
-                    calendar.unselect(); // Clear selection
-                    return;
+                document.getElementById('permohonan_id').value = info.event.extendedProps.permohonan_id || '';
+                document.getElementById('permohonan_type').value = info.event.extendedProps.permohonan_type || '';
+                document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_id || '';
+                document.getElementById('tempat').value = info.event.extendedProps.place || '';
+                document.getElementById('tujuan').value = info.event.extendedProps.purpose || '';
+
+
+                if (info.event.extendedProps.status != '1') {
+                    $('#auth_button').addClass('d-none'); // Hide the buttons
+                } else {
+                    $('#auth_button').removeClass('d-none'); // Show the buttons
                 }
 
-                while (currentDate < endDate) {
-                    const dateStr = formatDate(currentDate);
 
-                    let html = `
-        <div class="date-block mb-4">
-            <h6>Tarikh: ${dateStr}</h6>
-            <input type="hidden" name="dates[]" value="${dateStr}">
-            <div class="row">
-                <div class="col-6">
-                    <label for="start-${dateStr}" class="form-label">Masa Mula</label>
-                    <input type="time" class="form-control" name="time_start[]" id="start-${dateStr}" min="08:00" max="18:00">
-                </div>
-                <div class="col-6">
-                    <label for="end-${dateStr}" class="form-label">Masa Tamat</label>
-                    <input type="time" class="form-control" name="time_end[]" id="end-${dateStr}" min="08:00" max="18:00">
-                </div>
-            </div>
-        </div>
-        `;
+                // while (currentDate < endDate) {
 
-                    $('#time-container').append(html);
+                //             let html = `
+                // <div class="date-block mb-4">
+                //     <h6>Tarikh: ${dateStr}</h6>
+                //     <input type="hidden" name="dates[]" value="${dateStr}">
+                //     <div class="row">
+                //         <div class="col-6">
+                //             <label for="start-${dateStr}" class="form-label">Masa Mula</label>
+                //             <input type="time" class="form-control" name="time_start[]" id="start-${dateStr}" min="08:00" max="18:00">
+                //         </div>
+                //         <div class="col-6">
+                //             <label for="end-${dateStr}" class="form-label">Masa Tamat</label>
+                //             <input type="time" class="form-control" name="time_end[]" id="end-${dateStr}" min="08:00" max="18:00">
+                //         </div>
+                //     </div>
+                // </div>
+                // `;
 
-                    // Go to the next date
-                    currentDate.setDate(currentDate.getDate() + 1);
-                    modal.show();
-                }
+                // $('#time-container').append(html);
+
+                // Go to the next date
+                // currentDate.setDate(currentDate.getDate() + 1);
+                modal.show();
+                // }
             },
 
 

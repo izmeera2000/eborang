@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['fetch_events'])) {
+if (isset($_POST['senarai_permohonan_calendar'])) {
     $start_utc = $_POST['start'];
     $end_utc = $_POST['end'];
 
@@ -11,7 +11,7 @@ if (isset($_POST['fetch_events'])) {
     $events = [];
 
     // Fetch permohonan dates within the given range
-    $sql = "SELECT pd.*, p.status, p.user_id 
+    $sql = "SELECT pd.*, p.status, p.user_id , p.permohonan_type,p.status,p.days,p.time_slip,p.file,p.place,p.purpose,p.lecturer_id
             FROM permohonan_dates pd
             LEFT JOIN permohonan p ON pd.permohonan_id = p.id
             WHERE pd.date BETWEEN '$start_date' AND '$end_date'";
@@ -28,12 +28,22 @@ if (isset($_POST['fetch_events'])) {
         $status = $row['status'];
         $permohonan_id = $row['permohonan_id'];
 
+        $permohonan_type = $row['permohonan_type'];
+        $status = $row['status'];
+        $days = $row['days'];
+        $time_slip = $row['time_slip'];
+        $file = $row['file'];
+        $place = $row['place'];
+        $purpose = $row['purpose'];
+        $lecturer_id = $row['lecturer_id'];
+    
+
         // Determine class based on status
-        $className = 'bg-gradient-success';
+        $className = 'bg-gradient-warning';
         if ($status == 0) {
-            $className = 'bg-gradient-warning';
-        } elseif ($status == 2) {
             $className = 'bg-gradient-danger';
+        } elseif ($status == 2) {
+            $className = 'bg-gradient-success';
         }
 
         // If the permohonan_id already exists, check the dates and merge the times correctly
@@ -48,7 +58,15 @@ if (isset($_POST['fetch_events'])) {
                 'start' => trim(sprintf('%s %s', $event_date, $start_time)),
                 'end' => trim(sprintf('%s %s', $event_date, $end_time)),
                 'permohonan_id' => $permohonan_id,
-                'className' => $className
+                'className' => $className,
+                'permohonan_type' => $permohonan_type,
+                'status' => $status,
+                'days' => $days,
+                'time_slip' => $time_slip,
+                'file' => $file,
+                'place' => $place,
+                'purpose' => $purpose,
+                'lecturer_id' => $lecturer_id
             ];
         } else {
             // Check the start time - only update if the current event starts earlier

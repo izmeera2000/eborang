@@ -53,13 +53,30 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST"  enctype="multipart/form-data">
+                            <form action="" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="user_id" value="1"> <!-- example user -->
                                 <input type="hidden" name="permohonan_type" value="2"> <!-- example type -->
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Lecturer</label>
-                                    <select class="form-control" name="lecturer_id"  required>
-                                        <option>1</option>
+                                <div class="form-group" >
+                                    <label for="exampleFormControlSelect1">Lecturer</label> 
+                                    <select class="form-control" name="lecturer_id" required>
+                                        <?php
+
+
+                                        // $lect = [];
+                                        $lect = "SELECT * FROM users WHERE role='3'";
+                                        $result = mysqli_query($conn, $lect);
+
+
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($user = mysqli_fetch_assoc($result)) {
+                                                // Do something with $user
+                                                ?>
+                                                <option value="<?php echo $user['id'] ?>"><?php echo $user['email'] ?></option>
+                                                <?php
+                                            }
+                                        }
+
+                                        ?>
 
                                     </select>
 
@@ -71,7 +88,7 @@
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Bukti </label>
                                     <input class="form-control" type="file" name="bukti" required>
-                                       
+
                                 </div>
                                 <div id="time-container"></div>
 
@@ -149,7 +166,7 @@
                     type: "POST",
                     dataType: "json",
                     data: {
-                        fetch_events: true,
+                        senarai_permohonan_calendar: true,
                         start: fetchInfo.startStr,
                         end: fetchInfo.endStr,
                     }, // Secure POST request
