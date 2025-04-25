@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
         $password = md5($password);
 
 
-        $query = "SELECT a.id,a.username,a.email,a.role,b.name 
+        $query = "SELECT a.id,a.username,a.email,a.role,b.name as nama , b.ic,b.phone,b.birth_date,b.ndp,b.kursus,b.semester,b.bengkel 
                     FROM users a 
                     LEFT JOIN user_details b ON b.user_id = a.id
                      WHERE email='$login' AND password='$password'

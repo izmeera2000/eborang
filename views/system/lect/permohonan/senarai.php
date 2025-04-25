@@ -88,17 +88,7 @@
             <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/footer2.php"); ?>
 
         </div>
-        <?php
-        if (!$_SESSION['user_details']['nama']) {
-
-
-            swal("Error", "Anda tidak mempunyai butiran yang lengkap", "error", "OK", "$basePath2/profile");
-
-            ?>
-
-            <?php
-        }
-        ?>
+ 
 
     </main>
 
@@ -110,10 +100,10 @@
 
         var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
             contentHeight: 'auto',
-            initialView: "dayGridMonth",
+            initialView: "listDay",
             headerToolbar: {
                 start: 'title', // will normally be on the left. if RTL, will be on the right
-                center: '',
+                center: 'listDay,listWeek,timeGridWeek,dayGridMonth',
                 end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
             },
             hiddenDays: [0, 6],

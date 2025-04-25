@@ -101,9 +101,15 @@ if (isset($_POST['permohonan_request'])) {
     $days = count($dates);
     $time_slip = 0; // or calculate if needed
 
+    $filename = basename($_FILES['bukti']["name"]);
+    $place = $_POST['tempat'];
+    $purpose = $_POST['tujuan'];
+    $lecturer_id = $_POST['lecturer_id'];
+
+
     // Insert into `permohonan`
-    $sql = "INSERT INTO permohonan (user_id, permohonan_type, status, days, time_slip) 
-          VALUES ('$user_id', '$permohonan_type', '$status', '$days', '$time_slip')";
+    $sql = "INSERT INTO permohonan (user_id, permohonan_type, status, days, time_slip,file,place,purpose,lecturer_id) 
+          VALUES ('$user_id', '$permohonan_type', '$status', '$days', '$time_slip','$filename','$place','$purpose','$lecturer_id')";
     if (mysqli_query($conn, $sql)) {
         $permohonan_id = mysqli_insert_id($conn);
 
@@ -116,6 +122,15 @@ if (isset($_POST['permohonan_request'])) {
             $sql2 = "INSERT INTO permohonan_dates (permohonan_id, date, time_start, time_end)
                    VALUES ($permohonan_id, '$date', '$time_start', '$time_end')";
             mysqli_query($conn, $sql2);
+        }
+
+
+        $result = uploadFile('bukti', 'assets/uploads/permohonan/temp/' . $permohonan_id . '/');
+
+        if ($result['success']) {
+            echo "File uploaded: " . $result['file_path'];
+        } else {
+            echo "Error: " . $result['message'];
         }
 
         // Redirect after success

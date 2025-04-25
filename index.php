@@ -39,10 +39,14 @@ $routes = [
     'login' => 'login',
     'register' => 'register',
     'logout' => 'logout',
+    'profile' => 'profile',
 
     //student
     'permohonan/pelepasan' => 'permohonan_pelepasan',
     'permohonan/senarai' => 'permohonan_senarai',
+
+
+    
 
 
     //fucntions
@@ -51,6 +55,8 @@ $routes = [
         'permohonan/senarai_calendar' => 'permohonan_senarai_calendar',
         'permohonan/request' => 'permohonan_request',
  
+    //userprofile
+    'profile/update' => 'profile_update',
 
 ];
 

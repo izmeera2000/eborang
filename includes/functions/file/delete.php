@@ -28,3 +28,7 @@ function deleteDirectory($dirPath)
     rmdir($dirPath);
     echo "<script>console.log('Directory and its contents deleted successfully');</script>";
 }
+
+
+
+
