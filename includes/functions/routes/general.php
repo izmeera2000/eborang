@@ -98,6 +98,18 @@ function dashboard()
 
     }
 
+    if ($role == 'guard') {
+ 
+        include 'views/system/guard/dashboard.php';
+
+    }
+  
+    if ($role == 'kb') {
+ 
+        include 'views/system/kb/dashboard.php';
+
+    }
+
     if ($role == 'lecturer') {
  
         include 'views/system/lect/dashboard.php';
@@ -166,7 +178,7 @@ function permohonan_senarai()
     $breadcrumbs = [
         ['title' => 'Home', 'url' => ''],
         ['title' => 'Permohonan', 'url' => '/permohonan'],
-        ['title' => 'Pelepasan', 'url' => '/pelepasan'],
+        ['title' => 'Perlepasan', 'url' => '/perlepasan'],
     ];
     echo "<script>console.log(" . json_encode($role) . ");</script>";
 
@@ -176,7 +188,7 @@ function permohonan_senarai()
     if ($role === 'student') {
 
  
-        // include 'views/system/student/permohonan/pelepasan.php';
+        // include 'views/system/student/permohonan/perlepasan.php';
 
     }
 

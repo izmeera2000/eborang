@@ -42,13 +42,16 @@ $routes = [
     'profile' => 'profile',
 
     //student
-    'permohonan/pelepasan' => 'permohonan_pelepasan',
+    'permohonan/perlepasan' => 'permohonan_perlepasan',
 
     //
     'permohonan/senarai' => 'permohonan_senarai',
 
 
-    
+    //guard
+
+    'perlepasan/senarai' => 'perlepasan_senarai',
+
 
 
     //fucntions

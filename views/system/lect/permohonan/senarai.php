@@ -30,7 +30,7 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
-
+ 
                 <div class="col-12">
                     <div class="card card-calendar">
                         <div class="card-body p-3">
@@ -58,6 +58,8 @@
                                 <div class="form-group">
                                     <input type="hidden" name="role"
                                         value="<?php echo $_SESSION['user_details']['role']; ?>">
+                                    <input type="hidden" name="bengkel"
+                                        value="<?php echo $_SESSION['user_details']['bengkel']; ?>">
                                     <input type="hidden" id="permohonan_id" name="permohonan_id">
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Student </label>
@@ -89,7 +91,7 @@
                                     <input class="form-control" type="file" id="bukti" required> -->
 
 
- 
+
                                     <a class="btn btn-info mt-2" data-fancybox href="javascript:;" id="file_preview">
                                         File
                                     </a>
@@ -170,6 +172,7 @@
                         end: fetchInfo.endStr,
                         role: "<?php echo $_SESSION['user_details']['role']; ?>",
                         user_id: "<?php echo $_SESSION['user_details']['id']; ?>",
+                        bengkel: "<?php echo $_SESSION['user_details']['bengkel']; ?>",
 
                     }, // Secure POST request
                     success: function (response) {

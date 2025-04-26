@@ -6,9 +6,17 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
     $role = $_POST['role'];
     $user_id = $_POST['user_id'];
 
+    $bengkel = isset($_POST['bengkel']) ? $_POST['bengkel'] : null;  // If not set, set as null
+
+
+
     // Convert to date format for SQL
     $start_date = date('Y-m-d', strtotime($start_utc));
     $end_date = date('Y-m-d', strtotime($end_utc));
+
+
+
+    $today = date('Y-m-d');  // Get today's date in Y-m-d format
 
     $events = [];
 
@@ -18,6 +26,10 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
             LEFT JOIN permohonan p ON pd.permohonan_id = p.id
             LEFT JOIN user_details ud ON p.user_id = ud.id
             WHERE (pd.date BETWEEN '$start_date' AND '$end_date') ";
+
+    if ($role != '4' && $role != '1') {
+        $sql .= " AND ud.bengkel = '$bengkel'";
+    }
 
     if ($role == 3) {
         $sql .= " AND p.status = '1'";
@@ -29,7 +41,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
 
     }
     if ($role == 5) {
-         $sql .= " AND p.user_id = '$user_id' ";
+        $sql .= " AND p.user_id = '$user_id' ";
 
     }
 
@@ -49,54 +61,54 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
         $status = $row['status'];
         $days = $row['days'];
         $time_slip = $row['time_slip'];
-        $file = $rootPath. "/assets/uploads/permohonan/". $permohonan_id . "/". $row['file'];
+        $file = $rootPath . "/assets/uploads/permohonan/" . $permohonan_id . "/" . $row['file'];
         $place = $row['place'];
         $purpose = $row['purpose'];
         $lecturer_id = $row['lecturer_id'];
         $kb_id = $row['kb_id'];
 
- 
+
         $student_name = $row['student_name'];
         $ndp = $row['ndp'];
 
-        if($row['student_image'] == NULL){
+        if ($row['student_image'] == NULL) {
             $student_image = "$rootPath/assets/img/user/nopic.png";
-        } else{
-        $student_image = $row['student_image'];
-            
+        } else {
+            $student_image = $row['student_image'];
+
 
         }
 
- 
-             // Get the file extension
-            $file_extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-        
-            // Variable to hold the file type
-            $file_type = '';
-        
-            // Determine the file type based on the file extension
-            switch ($file_extension) {
-                case 'pdf':
-                    // If the file extension is PDF, set the file type to iframe (for viewing in an iframe)
-                    $file_type = "iframe";
-                    break;
-        
-                case 'jpg':
-                case 'jpeg':
-                case 'png':
-                case 'gif':
-                    // If the file is an image, set the file type to image
-                    $file_type = "image";
-                    break;
-        
-                default:
-                    // If the file type is unknown, output a message
-                    $file_type = "unknown";
-                    break;
-            }
-        
-            // Output the result (for demonstration purposes)
-    
+
+        // Get the file extension
+        $file_extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+        // Variable to hold the file type
+        $file_type = '';
+
+        // Determine the file type based on the file extension
+        switch ($file_extension) {
+            case 'pdf':
+                // If the file extension is PDF, set the file type to iframe (for viewing in an iframe)
+                $file_type = "iframe";
+                break;
+
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+                // If the file is an image, set the file type to image
+                $file_type = "image";
+                break;
+
+            default:
+                // If the file type is unknown, output a message
+                $file_type = "unknown";
+                break;
+        }
+
+        // Output the result (for demonstration purposes)
+
 
         // Determine class based on status
         $className = 'bg-gradient-warning';
@@ -108,6 +120,10 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
             $className = 'bg-gradient-success';
         } else {
 
+        }
+
+        if ($event_date < $today) {
+            $className .= " opacity-7";
         }
 
         // If the permohonan_id already exists, check the dates and merge the times correctly
@@ -171,7 +187,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
 
 
 
-//request pelepasan / tambah
+//request perlepasan / tambah
 
 
 if (isset($_POST['permohonan_request'])) {
@@ -180,7 +196,7 @@ if (isset($_POST['permohonan_request'])) {
 
     // Make sure to sanitize the inputs
     $user_id = $_POST['user_id'];
-    $permohonan_type = "pelepasan";
+    $permohonan_type = "perlepasan";
     $status = 1;
     $dates = $_POST['dates'];
     $start_times = $_POST['time_start'];
@@ -221,7 +237,7 @@ if (isset($_POST['permohonan_request'])) {
         }
 
         // Redirect after success
-        header("Location: " . $basePath2 . "/permohonan/pelepasan");
+        header("Location: " . $basePath2 . "/permohonan/perlepasan");
         exit();
     }
 }

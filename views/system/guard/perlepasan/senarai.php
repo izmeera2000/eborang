@@ -172,7 +172,7 @@
                         end: fetchInfo.endStr,
                         role: "<?php echo $_SESSION['user_details']['role']; ?>",
                         user_id: "<?php echo $_SESSION['user_details']['id']; ?>",
-                        bengkel: "<?php echo $_SESSION['user_details']['bengkel']; ?>",
+                        bengkel: "",
 
                     }, // Secure POST request
                     success: function (response) {

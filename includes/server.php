@@ -22,10 +22,11 @@ include_once('functions/file/delete.php');
 
 include_once('functions/routes/student.php');
 include_once('functions/routes/general.php');
+include_once('functions/routes/guard.php');
 
 //permohonan
 
-include('functions/permohonan/pelepasan.php');
+include('functions/permohonan/perlepasan.php');
 include('functions/permohonan/auth.php');
 
 

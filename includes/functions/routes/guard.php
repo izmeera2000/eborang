@@ -4,7 +4,7 @@
 
 
 
-function permohonan_perlepasan()
+function perlepasan_senarai()
 {
     include('includes/server.php');
     checkLogin();
@@ -12,12 +12,12 @@ function permohonan_perlepasan()
 
     $breadcrumbs = [
         ['title' => 'Home', 'url' => ''],
-        ['title' => 'Permohonan', 'url' => '/permohonan'],
-        ['title' => 'perlepasan', 'url' => '/perlepasan'],
+        ['title' => 'Perlepasan', 'url' => '/perlepasan'],
+        ['title' => 'Senarai', 'url' => '/senarai'],
     ];
     echo "<script>console.log(" . json_encode($role) . ");</script>";
 
-    if ($role === 'student') {
+    if ($role === 'guard') {
 
     //     include 'views/system/admin/dashboard.php';
 
@@ -29,7 +29,7 @@ function permohonan_perlepasan()
 
     
         // echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
-        include 'views/system/student/permohonan/perlepasan.php';
+        include 'views/system/guard/perlepasan/senarai.php';
 
     }
 }
@@ -38,17 +38,4 @@ function permohonan_perlepasan()
 
 
 
-
-function permohonan_request()
-{
-    include('includes/server.php');
- 
-
-}
-function permohonan_auth()
-{
-    include('includes/server.php');
- 
-
-}
  

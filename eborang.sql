@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 23, 2025 at 04:18 PM
+-- Generation Time: Apr 26, 2025 at 06:41 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -69,19 +69,21 @@ CREATE TABLE IF NOT EXISTS `permohonan` (
   `reason` text,
   `days` int DEFAULT NULL,
   `time_slip` int DEFAULT NULL,
+  `file` text,
+  `place` text,
+  `purpose` text,
+  `lecturer_id` int DEFAULT NULL,
+  `kb_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `permohonan`
 --
 
-INSERT INTO `permohonan` (`id`, `user_id`, `permohonan_type`, `created_at`, `status`, `reason`, `days`, `time_slip`) VALUES
-(10, 1, 'pelepasan', '2025-04-22 22:04:37', 1, NULL, 2, 0),
-(11, 1, 'pelepasan', '2025-04-22 22:12:12', 1, NULL, 1, 0),
-(12, 1, 'pelepasan', '2025-04-22 22:12:19', 1, NULL, 2, 0),
-(13, 1, 'pelepasan', '2025-04-22 22:13:45', 1, NULL, 1, 0),
-(14, 1, 'pelepasan', '2025-04-22 22:58:28', 1, NULL, 2, 0);
+INSERT INTO `permohonan` (`id`, `user_id`, `permohonan_type`, `created_at`, `status`, `reason`, `days`, `time_slip`, `file`, `place`, `purpose`, `lecturer_id`, `kb_id`) VALUES
+(27, 1, 'pelepasan', '2025-04-25 02:50:14', 3, NULL, 2, 0, 'schedule_calendar.pdf', 'asd', 'asdas', 2, 4),
+(28, 1, 'pelepasan', '2025-04-26 00:01:55', 3, NULL, 1, 0, 'schedule_calendar.pdf', 'asd', 'asdasd', 2, 4);
 
 -- --------------------------------------------------------
 
@@ -98,21 +100,16 @@ CREATE TABLE IF NOT EXISTS `permohonan_dates` (
   `time_end` time DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `permohonan_dates`
 --
 
 INSERT INTO `permohonan_dates` (`id`, `permohonan_id`, `date`, `time_start`, `time_end`, `created_at`) VALUES
-(30, 14, '2025-04-09', '00:00:00', '00:00:00', '2025-04-22 22:58:28'),
-(29, 14, '2025-04-08', '00:00:00', '00:00:00', '2025-04-22 22:58:28'),
-(28, 13, '2025-04-16', '08:13:00', '17:13:00', '2025-04-22 22:13:45'),
-(27, 12, '2025-04-10', '00:00:00', '00:00:00', '2025-04-22 22:12:19'),
-(26, 12, '2025-04-09', '00:00:00', '00:00:00', '2025-04-22 22:12:19'),
-(25, 11, '2025-04-15', '00:00:00', '00:00:00', '2025-04-22 22:12:12'),
-(24, 10, '2025-04-08', '00:00:00', '00:00:00', '2025-04-22 22:04:37'),
-(23, 10, '2025-04-07', '00:00:00', '00:00:00', '2025-04-22 22:04:37');
+(45, 28, '2025-04-15', '00:00:00', '00:00:00', '2025-04-26 00:01:55'),
+(44, 27, '2025-04-09', '00:00:00', '00:00:00', '2025-04-25 02:50:14'),
+(43, 27, '2025-04-08', '00:00:00', '00:00:00', '2025-04-25 02:50:14');
 
 -- --------------------------------------------------------
 
@@ -131,14 +128,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `role` (`role`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `image`, `created_at`) VALUES
-(1, 'asdasd', 'asdasd@gmail.com', 'a8f5f167f44f4964e6c998dee827110c', 5, NULL, '2025-04-22 22:35:15');
+(1, 'student', 'student@gmail.com', 'a8f5f167f44f4964e6c998dee827110c', 5, NULL, '2025-04-22 22:35:15'),
+(2, 'lect', 'lect@gmail.com', 'a8f5f167f44f4964e6c998dee827110c', 3, NULL, '2025-04-22 22:35:15'),
+(3, 'bppl', 'bppl@gmail.com', 'a8f5f167f44f4964e6c998dee827110c', 1, NULL, '2025-04-22 22:35:15'),
+(4, 'kb', 'kb@gmail.com', 'a8f5f167f44f4964e6c998dee827110c', 2, NULL, '2025-04-22 22:35:15'),
+(5, 'guard', 'guard@gmail.com', 'a8f5f167f44f4964e6c998dee827110c', 4, NULL, '2025-04-22 22:35:15');
 
 -- --------------------------------------------------------
 
@@ -154,13 +155,23 @@ CREATE TABLE IF NOT EXISTS `user_details` (
   `ic` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `birth_date` date DEFAULT NULL,
   `ndp` text COLLATE utf8mb4_general_ci,
   `kursus` text COLLATE utf8mb4_general_ci,
   `semester` int DEFAULT NULL,
   `bengkel` text COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_details`
+--
+
+INSERT INTO `user_details` (`id`, `user_id`, `name`, `ic`, `image`, `phone`, `birth_date`, `ndp`, `kursus`, `semester`, `bengkel`) VALUES
+(1, 1, 'asdsad', '123123', NULL, '01123881290', '2025-04-26', '12321', '12321', 321321, 'komputer'),
+(2, 2, 'asdsad', '', NULL, '01123881290', NULL, NULL, NULL, NULL, 'komputer'),
+(3, 4, 'asdsad', '', NULL, '011221313', NULL, NULL, NULL, NULL, 'komputer');
 
 -- --------------------------------------------------------
 
