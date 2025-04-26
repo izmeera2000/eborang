@@ -134,7 +134,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
             }
 
             $event_groups[$permohonan_id] = [
-                'title' => "Permohonan #" . $permohonan_id,
+                'title' => "#" . $permohonan_id . " ($ndp) $student_name",
                 'start' => trim(sprintf('%s %s', $event_date, $start_time)),
                 'end' => trim(sprintf('%s %s', $event_date, $end_time)),
                 'permohonan_id' => $permohonan_id,

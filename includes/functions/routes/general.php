@@ -115,6 +115,13 @@ function dashboard()
         include 'views/system/lect/dashboard.php';
 
     }
+
+    
+    if ($role == 'bppl') {
+ 
+        include 'views/system/bppl/dashboard.php';
+
+    }
 }
 
 
@@ -201,6 +208,13 @@ function permohonan_senarai()
     }
 
     if ($role === 'kb') {
+
+ 
+        include 'views/system/kb/permohonan/senarai.php';
+
+    }
+
+    if ($role === 'bppl') {
 
  
         include 'views/system/kb/permohonan/senarai.php';
