@@ -61,19 +61,6 @@ function unAuth()
     // echo $requestUri;
 
 }
-function checkLogin()
-{
-
-    checkRole();
-    if (!isset($_SESSION['user_details'])) {
-        global $basePath2;
-
-        header("Location: " . $basePath2 . "/login");
-        exit();
-
-    }
-
-}
 
 
 
@@ -89,30 +76,6 @@ function register_2()
 
 
 
-
-
-function checkRole()
-{
-    // Ensure the 'role' session is set and is one of the valid roles
-    if (isset($_SESSION['user_details']['role'])) {
-        $role = $_SESSION['user_details']['role'];
-        // Check for different roles
-        if ($role == 1) {
-            return 'bppl';
-        } elseif ($role == 2) {
-            return 'kb';
-        } elseif ($role == 3) {
-            return 'lecturer';
-        } elseif ($role == 4) {
-            return 'guard';
-        } elseif ($role == 5) {
-            return 'student';
-        }
-    }
-
-    echo "<script>console.log(" . json_encode($role) . ");</script>";
-
-}
 
 
 
@@ -140,107 +103,6 @@ function dashboard()
         include 'views/system/lect/dashboard.php';
 
     }
-}
-
-use chillerlan\QRCode\QRCode;
-use chillerlan\QRCode\QROptions;
-
-require 'vendor/autoload.php'; // Ensure Composer's autoload is included
-
-
-
-
-function generateQRCodeWithLogo($data, $logoPath)
-{
-    $options = new QROptions([
-        'outputType' => QRCode::OUTPUT_IMAGE_PNG,
-        'eccLevel' => QRCode::ECC_H,
-        'scale' => 10,
-        'imageBase64' => false, // We will convert to base64 manually
-    ]);
-
-    // Generate the QR code image
-    $qrOutputInterface = new QRCode($options);
-    $qrImage = $qrOutputInterface->render($data);
-
-    // Load the QR code and logo images
-    $qrImageResource = imagecreatefromstring($qrImage);
-    $logoImageResource = imagecreatefrompng($_SERVER['DOCUMENT_ROOT'] . $logoPath);
-
-    // Get dimensions
-    $qrWidth = imagesx($qrImageResource);
-    $qrHeight = imagesy($qrImageResource);
-    $logoWidth = imagesx($logoImageResource);
-    $logoHeight = imagesy($logoImageResource);
-
-    // Calculate logo placement
-    $logoQRWidth = $qrWidth / 5; // Logo will cover 1/5th of the QR code
-    $scaleFactor = $logoWidth / $logoQRWidth;
-    $logoQRHeight = $logoHeight / $scaleFactor;
-
-    $xPos = ($qrWidth - $logoQRWidth) / 2;
-    $yPos = ($qrHeight - $logoQRHeight) / 2;
-
-    // Merge logo onto QR code
-    imagecopyresampled(
-        $qrImageResource,
-        $logoImageResource,
-        $xPos,
-        $yPos,
-        0,
-        0,
-        $logoQRWidth,
-        $logoQRHeight,
-        $logoWidth,
-        $logoHeight
-    );
-
-    // Output QR code with logo to a string
-    ob_start();
-    imagepng($qrImageResource);
-    $outputImage = ob_get_clean();
-
-    // Convert to base64
-    $base64 = base64_encode($outputImage);
-
-    // Free memory
-    imagedestroy($qrImageResource);
-    imagedestroy($logoImageResource);
-
-    return $base64;
-}
-
-
-function swal($title, $text = '', $icon = null, $buttonText = 'OK', $redirectUrl = null)
-{
-    // Start building the JS config
-    $swalConfig = [
-        'title' => $title,
-        'text' => $text,
-        'confirmButtonText' => $buttonText
-    ];
-
-    // Only include icon if it's not empty
-    if (!empty($icon)) {
-        $swalConfig['icon'] = $icon;
-    }
-
-    // Convert the PHP array to a JS object
-    $jsConfig = json_encode($swalConfig);
-
-    // Start the JavaScript to show SweetAlert2
-    echo "
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire($jsConfig).then((result) => {
-                // Check if a redirection URL is provided
-                if ('$redirectUrl' !== '') {
-                    window.location.href = '$redirectUrl';
-                }
-            });
-        });
-    </script>
-    ";
 }
 
 
@@ -290,4 +152,55 @@ function profile_update()
     // echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
     // header("Location: " . $basePath2 . "/profile");
     // exit();
+}
+
+
+
+
+function permohonan_senarai()
+{
+    include('includes/server.php');
+    checkLogin();
+    $role = checkRole();
+
+    $breadcrumbs = [
+        ['title' => 'Home', 'url' => ''],
+        ['title' => 'Permohonan', 'url' => '/permohonan'],
+        ['title' => 'Pelepasan', 'url' => '/pelepasan'],
+    ];
+    echo "<script>console.log(" . json_encode($role) . ");</script>";
+
+
+
+
+    if ($role === 'student') {
+
+ 
+        // include 'views/system/student/permohonan/pelepasan.php';
+
+    }
+
+
+    if ($role === 'lecturer') {
+
+ 
+        include 'views/system/lect/permohonan/senarai.php';
+
+    }
+
+    if ($role === 'kb') {
+
+ 
+        include 'views/system/kb/permohonan/senarai.php';
+
+    }
+}
+
+
+
+function permohonan_senarai_calendar()
+{
+    include('includes/server.php');
+ 
+
 }

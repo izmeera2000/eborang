@@ -29,12 +29,13 @@ function uploadFile($fileInputName, $targetDir = "uploads/", $allowedTypes = ['j
     }
 
     // Generate unique file name
-    $newFileName = uniqid() . '.' . $fileExt;
-    $targetPath = $targetDir . $newFileName;
+    // $newFileName = uniqid() . '.' . $fileExt;
+
+    $targetPath = $targetDir . $fileName;
 
     // Move the file
     if (move_uploaded_file($fileTmp, $targetPath)) {
-        return ['success' => true, 'file_path' => $targetPath, 'file_name' => $newFileName];
+        return ['success' => true, 'file_path' => $targetPath, 'file_name' => $fileName];
     } else {
         return ['success' => false, 'message' => 'Failed to move uploaded file.'];
     }

@@ -43,6 +43,8 @@ $routes = [
 
     //student
     'permohonan/pelepasan' => 'permohonan_pelepasan',
+
+    //
     'permohonan/senarai' => 'permohonan_senarai',
 
 

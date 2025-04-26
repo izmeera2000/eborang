@@ -5,11 +5,20 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
 
 
     $id = $_POST['permohonan_id'];
- 
 
+    $role = $_POST['role'];
 
     if (isset($_POST['permohonan_auth_accept'])) {
-        $status = '2';
+
+        if ($role == '2') {
+            $status = '3';
+
+        }else{
+            
+            $status = '2';
+        }
+
+
     } elseif (isset($_POST['permohonan_auth_decline'])) {
         $status = '0';
     } else {

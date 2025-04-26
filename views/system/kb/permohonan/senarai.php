@@ -64,13 +64,14 @@
                                     <ul class="list-group">
                                         <li class="list-group-item border-0 d-flex align-items-center px-0">
                                             <div class="avatar me-3">
-                                                <img id="student_image" class="border-radius-lg shadow">
+                                                <img     id="student_image"
+                                                    class="border-radius-lg shadow">
                                             </div>
                                             <div class="d-flex align-items-start flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm" id="student_name">Name</h6>
                                                 <p class="mb-0 text-xs" id="ndp">NDP</p>
                                             </div>
-                                        </li>
+                                         </li>
                                     </ul>
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Jenis Permohonan </label>
@@ -89,10 +90,6 @@
                                     <input class="form-control" type="file" id="bukti" required> -->
 
 
- 
-                                    <a class="btn btn-info mt-2" data-fancybox href="javascript:;" id="file_preview">
-                                        File
-                                    </a>
 
                                 </div>
                                 <div id="auth_button">
@@ -203,13 +200,9 @@
                 document.getElementById('tempat').value = info.event.extendedProps.place || '';
                 document.getElementById('tujuan').value = info.event.extendedProps.purpose || '';
 
-                document.getElementById('student_name').innerText = info.event.extendedProps.student_name || '';
-                document.getElementById('ndp').innerText = info.event.extendedProps.ndp || '';
-                document.getElementById('student_image').src = info.event.extendedProps.student_image || '';
-
-                const filePreview = document.getElementById('file_preview');
-                filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
-                filePreview.setAttribute('data-type', info.event.extendedProps.file_type);       // Set the type as 'image'
+                document.getElementById('student_name').innerText  = info.event.extendedProps.student_name || '';
+                document.getElementById('ndp').innerText  = info.event.extendedProps.ndp || '';
+                document.getElementById('student_image').src  = info.event.extendedProps.student_image || '';
 
 
 

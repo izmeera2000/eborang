@@ -12,9 +12,11 @@
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
+ 
   <!-- Font Awesome Icons -->
   <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
   <!-- CSS Files -->
   <link id="pagestyle" href="<?php echo $rootPath; ?>/assets/css/soft-ui-dashboard.css" rel="stylesheet" />
+  <link  href="<?php echo $rootPath; ?>/assets/css/jquery.fancybox.css" rel="stylesheet" />
  
 </head>

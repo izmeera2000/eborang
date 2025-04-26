@@ -12,6 +12,7 @@
 <script src="<?php echo $rootPath; ?>/assets/js/plugins/jkanban/jkanban.js"></script>
 <script src="<?php echo $rootPath; ?>/assets/js/plugins/chartjs.min.js"></script>
 <script src="<?php echo $rootPath; ?>/assets/js/plugins/sweetalert.min.js"></script>
+<script src="<?php echo $rootPath; ?>/assets/js/plugins/jquery.fancybox.js"></script>
 <script>
   var win = navigator.platform.indexOf('Win') > -1;
   if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -21,5 +22,6 @@
     Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
   }
 </script>
+ 
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?php echo $rootPath; ?>/assets/js/soft-ui-dashboard.min.js"></script>

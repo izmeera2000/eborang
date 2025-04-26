@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"90ada87272a0a4d7","x":-300,"y":-160,"width":250,"height":60,"type":"text","text":"Mohon Borang"},
+		{"id":"cce2b5538216ab9c","x":-300,"y":-20,"width":250,"height":60,"type":"text","text":"Lect Approve"},
+		{"id":"5a775c65bba30ca8","x":-300,"y":140,"width":250,"height":60,"type":"text","text":"KB Approve"}
+	],
+	"edges":[
+		{"id":"79efb3496b44134d","fromNode":"90ada87272a0a4d7","fromSide":"bottom","toNode":"cce2b5538216ab9c","toSide":"top"},
+		{"id":"81e185bdba9d33a4","fromNode":"cce2b5538216ab9c","fromSide":"bottom","toNode":"5a775c65bba30ca8","toSide":"top"}
+	]
+}

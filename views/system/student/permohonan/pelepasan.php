@@ -54,7 +54,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="user_id" value="1"> <!-- example user -->
+                                <input type="hidden" name="user_id" value="<?php  echo $_SESSION['user_details']['id']   ?>">  
                                 <input type="hidden" name="permohonan_type" value="2"> <!-- example type -->
                                 <div class="form-group" >
                                     <label for="exampleFormControlSelect1">Lecturer</label> 
@@ -169,6 +169,8 @@
                         senarai_permohonan_calendar: true,
                         start: fetchInfo.startStr,
                         end: fetchInfo.endStr,
+                        role: "<?php echo $_SESSION['user_details']['role']; ?>",
+                        user_id: "<?php echo $_SESSION['user_details']['id']; ?>",
                     }, // Secure POST request
                     success: function (response) {
                         console.log("Response received:", response); // Debug log
