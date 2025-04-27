@@ -131,7 +131,7 @@
             initialView: "listDay",
             headerToolbar: {
                 start: 'title', // will normally be on the left. if RTL, will be on the right
-                center: 'listDay,listWeek,timeGridWeek,dayGridMonth',
+                center: '',
                 end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
             },
             hiddenDays: [0, 6],

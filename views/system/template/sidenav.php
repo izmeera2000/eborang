@@ -74,7 +74,7 @@
               <li class="nav-item ">
                 <a class="nav-link " href="<?php echo $rootPath; ?>/permohonan/perlepasan">
                   <span class="sidenav-mini-icon"> P </span>
-                  <span class="sidenav-normal"> perlepasan </span>
+                  <span class="sidenav-normal"> Perlepasan </span>
                 </a>
               </li>
             <?php } ?>

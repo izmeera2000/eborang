@@ -44,12 +44,11 @@ $routes = [
     //student
     'permohonan/perlepasan' => 'permohonan_perlepasan',
 
-    //
+    //semua
     'permohonan/senarai' => 'permohonan_senarai',
 
 
     //guard
-
     'perlepasan/senarai' => 'perlepasan_senarai',
 
 

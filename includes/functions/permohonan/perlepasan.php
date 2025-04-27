@@ -3,11 +3,11 @@
 if (isset($_POST['senarai_permohonan_calendar'])) {
     $start_utc = $_POST['start'];
     $end_utc = $_POST['end'];
+
     $role = $_POST['role'];
     $user_id = $_POST['user_id'];
 
     $bengkel = isset($_POST['bengkel']) ? $_POST['bengkel'] : null;  // If not set, set as null
-
 
 
     // Convert to date format for SQL
@@ -35,6 +35,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
         $sql .= " AND p.status = '1'";
         $sql .= " AND p.lecturer_id = '$user_id' ";
     }
+    
     if ($role == 2) {
         $sql .= " AND p.status = '2'";
         $sql .= " AND p.kb_id = '$user_id' ";
