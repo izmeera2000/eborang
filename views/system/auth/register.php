@@ -73,7 +73,7 @@
                 <div class="card-footer text-center pt-0 px-sm-4 px-1">
                   <p class="mb-4 mx-auto">
                     Already have an account?
-                    <a href="<?php  echo $basePath2 ?>/register"
+                    <a href="<?php  echo $basePath2 ?>/login"
                       class="text-primary text-gradient font-weight-bold">Sign in</a>
                   </p>
                 </div>
