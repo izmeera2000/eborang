@@ -5,7 +5,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="<?php echo $rootPath; ?>/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="<?php echo $rootPath; ?>/assets/img/favicon.png">
   <title>
-    Soft UI Dashboard 3 by Creative Tim
+    E-borang
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,800" rel="stylesheet" />
