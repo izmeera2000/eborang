@@ -218,7 +218,7 @@
 
 
 
-                if (info.event.extendedProps.status != '1') {
+                if (info.event.extendedProps.status != '2') {
                     $('#auth_button').addClass('d-none'); // Hide the buttons
                 } else {
                     $('#auth_button').removeClass('d-none'); // Show the buttons
