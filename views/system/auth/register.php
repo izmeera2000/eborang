@@ -37,7 +37,7 @@
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="card card-plain mt-sm-8 mt-7 mt-md-5">
                 <div class="card-header pb-0 text-left">
-                  <h3 class="font-weight-bolder text-primary text-gradient">Join us today</h3>
+                  <h3 class="font-weight-bolder text-adtec text-gradient">Join us today</h3>
                   <p class="mb-0">Enter your email and password to register</p>
                 </div>
                 <div class="card-body pb-3">
@@ -62,11 +62,11 @@
                       <input class="form-check-input" type="checkbox" value="" name="agree_terms" id="flexCheckDefault"
                         checked>
                       <label class="form-check-label" for="flexCheckDefault">
-                        I agree to the <a class="text-primary">Terms and Conditions</a>
+                        I agree to the <a class="text-adtec">Terms and Conditions</a>
                       </label>
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary w-100 mt-4 mb-0" name="register">Sign up</button>
+                      <button type="submit" class="btn bg-gradient-adtec text-white w-100 mt-4 mb-0" name="register">Sign up</button>
                     </div>
                   </form>
                 </div>
@@ -74,7 +74,7 @@
                   <p class="mb-4 mx-auto">
                     Already have an account?
                     <a href="<?php  echo $basePath2 ?>/login"
-                      class="text-primary text-gradient font-weight-bold">Sign in</a>
+                      class="text-adtec text-gradient font-weight-bold">Sign in</a>
                   </p>
                 </div>
               </div>

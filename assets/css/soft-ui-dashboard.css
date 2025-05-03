@@ -9307,6 +9307,9 @@ fieldset:disabled .btn {
 .text-danger {
   color: #ef4444 !important;
 }
+.text-adtec {
+  color: #ef4444 !important;
+}
 .text-light {
   color: #e3e3e7 !important;
 }
@@ -18535,6 +18538,10 @@ label {
 .bg-gradient-info {
   background-image: linear-gradient(310deg, #0ea5e9, #06b6d4);
 }
+.bg-gradient-adtec {
+  background-image: linear-gradient(310deg, #ef4444, #ef4444);
+}
+
 .bg-gradient-warning {
   background-image: linear-gradient(310deg, #eab308, #f97316);
 }
@@ -21563,6 +21570,9 @@ p {
   background-image: linear-gradient(310deg, #ca8a04, #ea580c);
 }
 .text-gradient.text-danger {
+  background-image: linear-gradient(310deg, #dc2626, rgb(239.8, 108.6, 173.4));
+}
+.text-gradient.text-adtec {
   background-image: linear-gradient(310deg, #dc2626, rgb(239.8, 108.6, 173.4));
 }
 .text-gradient.text-dark {

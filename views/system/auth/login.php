@@ -37,7 +37,7 @@
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-left bg-transparent">
-                  <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
+                  <h3 class="font-weight-bolder text-adtec text-gradient">Welcome back</h3>
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
                 <div class="card-body">
@@ -55,14 +55,14 @@
                       <label class="form-check-label" for="rememberMe">Remember me</label>
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0"  name="login">Sign in</button>
+                      <button type="submit" class="btn bg-gradient-adtec text-white w-100 mt-4 mb-0"  name="login">Sign in</button>
                     </div>
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">
                     Don't have an account?
-                    <a href="<?php  echo $basePath2 ?>/register" class="text-info text-gradient font-weight-bold">Sign up</a>
+                    <a href="<?php  echo $basePath2 ?>/register" class="text-adtec text-gradient font-weight-bold">Sign up</a>
                   </p>
                 </div>
               </div>
