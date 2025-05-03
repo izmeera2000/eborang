@@ -204,7 +204,7 @@
                 document.getElementById('permohonan_id').value = info.event.extendedProps.permohonan_id || '';
                 document.getElementById('permohonan_type').value = info.event.extendedProps.permohonan_type || '';
                 document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_id || '';
-                document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_nama || '';
+                document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_name || '';
                 document.getElementById('tempat').value = info.event.extendedProps.place || '';
                 document.getElementById('tujuan').value = info.event.extendedProps.purpose || '';
 
