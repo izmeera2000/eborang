@@ -72,8 +72,8 @@ if (isset($_POST['updateprofile'])) {
 
 
         // Create the SQL query to insert data into the user_details table
-        $query = "INSERT INTO user_details (user_id, name, ic, phone, ndp, kursus, semester, bengkel)
-              VALUES ('$user_id', '$nama', '$ic', '$phone', '$ndp', '$kursus', '$semester', '$bengkel')";
+        $query = "INSERT INTO user_details (user_id, name, ic, phone, ndp, kursus, semester, bengkel,birth_date)
+              VALUES ('$user_id', '$nama', '$ic', '$phone', '$ndp', '$kursus', '$semester', '$bengkel', '$birth_date')";
         mysqli_query($conn, $query);
 
         // Check each value individually before updating the session
