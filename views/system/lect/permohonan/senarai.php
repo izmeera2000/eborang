@@ -80,7 +80,7 @@
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Lecturer Nama </label>
                                     <input class="form-control" type="hidden" id="lecturer_id">
-                                    <input class="form-control" type="text" id="lecturer_nama">
+                                    <input class="form-control" type="text" id="lecturer_name">
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Tempat </label>
                                     <input class="form-control" type="text" id="tempat">
@@ -204,7 +204,7 @@
                 document.getElementById('permohonan_id').value = info.event.extendedProps.permohonan_id || '';
                 document.getElementById('permohonan_type').value = info.event.extendedProps.permohonan_type || '';
                 document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_id || '';
-                document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_name || '';
+                document.getElementById('lecturer_name').value = info.event.extendedProps.lecturer_name || '';
                 document.getElementById('tempat').value = info.event.extendedProps.place || '';
                 document.getElementById('tujuan').value = info.event.extendedProps.purpose || '';
 

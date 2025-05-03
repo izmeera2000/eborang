@@ -58,7 +58,7 @@ if (isset($_POST['register'])) {
     $user = mysqli_fetch_assoc($result);
 
     if ($user) { // if user exists
-      if ($user['username'] === $ndp) {
+      if ($user['username'] === $username) {
 
         $errors['username'] = "username already registered";
       }
