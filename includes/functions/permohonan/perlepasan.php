@@ -31,12 +31,12 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
 
 
     if ($role == 3) {
-        $sql .= " AND p.status = '1'";
+        // $sql .= " AND p.status = '1'";
         $sql .= " AND p.lecturer_id = '$user_id' ";
     }
     
     if ($role == 2) {
-        $sql .= " AND p.status = '2'";
+        // $sql .= " AND p.status = '2'";
         $sql .= " AND p.kb_id = '$user_id' ";
 
     }
@@ -45,7 +45,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
 
     }
 
-    if ($role != '4' && $role != '1') {
+    if ($role != '4' && $role != '1' ) {
         $sql .= " AND udlect.bengkel = '$bengkel' ";
     }
 
