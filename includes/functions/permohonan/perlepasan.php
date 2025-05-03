@@ -45,7 +45,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
 
     }
 
-    if ($role != 4 || $role != 1) {
+    if ($role != '4' && $role != '1') {
         $sql .= " AND udlect.bengkel = '$bengkel' ";
     }
 
