@@ -21,16 +21,14 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
     $events = [];
 
     // Fetch permohonan dates within the given range
-    $sql = "SELECT pd.*, p.status, p.user_id , p.permohonan_type,p.status,p.days,p.time_slip,p.file,p.place,p.purpose,p.lecturer_id,p.kb_id,ud.name as student_name, ud.ndp,ud.image as student_image ,udlect.name as lecturer_name
+    $sql = "SELECT pd.*, p.status, p.user_id , p.permohonan_type,p.status,p.days,p.time_slip,p.file,p.place,p.purpose,p.lecturer_id,p.kb_id,ud.name as student_name, ud.ndp,ud.image as student_image ,udlect.name as lecturer_name, udlect.bengkel
             FROM permohonan_dates pd
             LEFT JOIN permohonan p ON pd.permohonan_id = p.id
             LEFT JOIN user_details ud ON p.user_id = ud.id
             LEFT JOIN user_details udlect ON p.lecturer_id = udlect.id
             WHERE (pd.date BETWEEN '$start_date' AND '$end_date') ";
 
-    if ($role != '4' && $role != '1') {
-        $sql .= " AND ud.bengkel = '$bengkel'";
-    }
+
 
     if ($role == 3) {
         $sql .= " AND p.status = '1'";
@@ -45,6 +43,10 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
     if ($role == 5) {
         $sql .= " AND p.user_id = '$user_id' ";
 
+    }
+
+    if ($role != 4 || $role != 1) {
+        $sql .= " AND udlect.bengkel = '$bengkel' ";
     }
 
     $result = $conn->query($sql);
