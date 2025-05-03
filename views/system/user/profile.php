@@ -76,7 +76,7 @@
                     <div class="input-group">
                       <input name="nama" class="form-control" type="text" placeholder="Alec" required="required"
                         onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['nama'] ?? ''; ?>">
+                        value="<?php echo $_SESSION['user_details']['nama'] ?? ''; ?>" required>
                     </div>
                   </div>
                   <div class="col-6">
@@ -84,7 +84,7 @@
                     <div class="input-group">
                       <input name="ic" class="form-control" type="text" placeholder="2324253351" required="required"
                         onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>">
+                        value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required>
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
                         <label class="form-label mt-4">Birth Date</label>
                         <div class="input-group">
                           <input class="form-control" type="date" id="example-date-input" name="birth_date"
-                            value="<?php echo $_SESSION['user_details']['birth_date'] ?? ''; ?>">
+                            value="<?php echo $_SESSION['user_details']['birth_date'] ?? ''; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -107,7 +107,7 @@
                     <div class="input-group">
                       <input id="email" name="email" class="form-control" type="email" placeholder="example@email.com"
                         onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['email'] ?? ''; ?>">
+                        value="<?php echo $_SESSION['user_details']['email'] ?? ''; ?>" required>
                     </div>
                   </div>
                   <div class="col-6">
@@ -115,7 +115,7 @@
                     <div class="input-group">
                       <input id="phone" name="phone" class="form-control" type="number" placeholder="01123482315"
                         onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['phone'] ?? ''; ?>">
+                        value="<?php echo $_SESSION['user_details']['phone'] ?? ''; ?>" required>
                     </div>
                   </div>
                 </div>
@@ -133,14 +133,14 @@
                     <label class="form-label mt-4">NDP</label>
                     <div class="input-group">
                       <input name="ndp" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>">
+                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>" required>
                     </div>
                   </div>
                   <div class="col-6">
                     <label class="form-label mt-4">Bengkel</label>
                     <div class="input-group">
                       <input name="bengkel" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['bengkel'] ?? ''; ?>">
+                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['bengkel'] ?? ''; ?>" required>
                     </div>
                   </div>
                 </div>
@@ -149,14 +149,14 @@
                     <label class="form-label mt-4">Kursus</label>
                     <div class="input-group">
                       <input name="kursus" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>">
+                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>" required>
                     </div>
                   </div>
                   <div class="col-6">
                     <label class="form-label mt-4">Semester</label>
                     <div class="input-group">
                       <input name="semester" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>">
+                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>" required>
                     </div>
                   </div>
                 </div>
