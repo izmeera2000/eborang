@@ -36,6 +36,8 @@ if (isset($_POST['login'])) {
 
 
             header("Location: " . $basePath2 . "/dashboard");
+exit();
+
         } else {
             $errors['login'] = "User doesn't exist or wrong password";
             echo "<script>console.log('error');</script>";

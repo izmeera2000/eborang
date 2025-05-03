@@ -151,6 +151,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
                 'place' => $place,
                 'purpose' => $purpose,
                 'lecturer_id' => $lecturer_id,
+                'lecturer_name' => $lecturer_name,
                 'kb_id' => $kb_id,
                 'student_name' => $student_name,
                 'ndp' => $ndp,

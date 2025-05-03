@@ -1,43 +1,43 @@
 <?php
 
 if (isset($_POST['register'])) {
-    $errors = array(); 
+  $errors = array();
 
-    echo "<script>console.log('test');</script>";
+  echo "<script>console.log('test');</script>";
 
 
-    if (empty($_POST['username'])) {
-        $errors['username'] = "username required";
-    } else {
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
+  if (empty($_POST['username'])) {
+    $errors['username'] = "username required";
+  } else {
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
 
-    }
+  }
 
-    if (empty($_POST['email'])) {
-        $errors['email'] = "email required";
-    } else {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
+  if (empty($_POST['email'])) {
+    $errors['email'] = "email required";
+  } else {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
 
-    }
+  }
 
-    if (empty($_POST['password1'])) {
-        $errors['password1'] = "password required";
-    } else {
-        $password1 = mysqli_real_escape_string($conn, $_POST['password1']);
+  if (empty($_POST['password1'])) {
+    $errors['password1'] = "password required";
+  } else {
+    $password1 = mysqli_real_escape_string($conn, $_POST['password1']);
 
-    }
+  }
 
-    if (empty($_POST['password2'])) {
-        $errors['password2'] = "confirm password required";
-    } else {
-        $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
+  if (empty($_POST['password2'])) {
+    $errors['password2'] = "confirm password required";
+  } else {
+    $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
 
-    }
+  }
 
-    if (!isset($_POST['agree_terms'])) {
-        $errors['agree_terms'] = "must agree";
-         
-    }
+  if (!isset($_POST['agree_terms'])) {
+    $errors['agree_terms'] = "must agree";
+
+  }
 
   $role = 5;
 
@@ -68,7 +68,7 @@ if (isset($_POST['register'])) {
 
       }
 
- 
+
     }
 
   }
@@ -82,13 +82,13 @@ if (isset($_POST['register'])) {
 
 
     $_SESSION['user_details'] = [
-        'username' => $username,
-        'email' => $email,
-        'role' => $role,
+      'username' => $username,
+      'email' => $email,
+      'role' => $role,
 
     ];
     header("Location: " . $basePath2 . "/login");
-
+    exit();
 
   }
 
