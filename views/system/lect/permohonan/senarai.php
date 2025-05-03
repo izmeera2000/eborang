@@ -78,8 +78,9 @@
                                     <label for="exampleFormControlSelect1" class="mt-2">Jenis Permohonan </label>
                                     <input class="form-control" type="text" id="permohonan_type">
 
-                                    <label for="exampleFormControlSelect1" class="mt-2">Tempat </label>
-                                    <input class="form-control" type="text" id="lecturer_id">
+                                    <label for="exampleFormControlSelect1" class="mt-2">Lecturer Nama </label>
+                                    <input class="form-control" type="hidden" id="lecturer_id">
+                                    <input class="form-control" type="text" id="lecturer_nama">
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Tempat </label>
                                     <input class="form-control" type="text" id="tempat">
@@ -203,6 +204,7 @@
                 document.getElementById('permohonan_id').value = info.event.extendedProps.permohonan_id || '';
                 document.getElementById('permohonan_type').value = info.event.extendedProps.permohonan_type || '';
                 document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_id || '';
+                document.getElementById('lecturer_id').value = info.event.extendedProps.lecturer_nama || '';
                 document.getElementById('tempat').value = info.event.extendedProps.place || '';
                 document.getElementById('tujuan').value = info.event.extendedProps.purpose || '';
 

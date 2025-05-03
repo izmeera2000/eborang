@@ -24,6 +24,7 @@ if (isset($_POST['login'])) {
                     LEFT JOIN user_details b ON b.user_id = a.id
                      WHERE email='$login' AND password='$password'
                     ";
+                    
         $results = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($results) == 1) {

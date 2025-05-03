@@ -10,8 +10,7 @@
 <!-- Kanban scripts -->
 <script src="<?php echo $rootPath; ?>/assets/js/plugins/dragula/dragula.min.js"></script>
 <script src="<?php echo $rootPath; ?>/assets/js/plugins/jkanban/jkanban.js"></script>
-<script src="<?php echo $rootPath; ?>/assets/js/plugins/chartjs.min.js"></script>
-<script src="<?php echo $rootPath; ?>/assets/js/plugins/sweetalert.min.js"></script>
+ <script src="<?php echo $rootPath; ?>/assets/js/plugins/sweetalert.min.js"></script>
 <script src="<?php echo $rootPath; ?>/assets/js/plugins/jquery.fancybox.js"></script>
 <script>
   var win = navigator.platform.indexOf('Win') > -1;
