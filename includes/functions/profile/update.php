@@ -68,9 +68,6 @@ if (isset($_POST['updateprofile'])) {
 
     if (!$user_details) { // if user exists
 
-
-
-
         // Create the SQL query to insert data into the user_details table
         $query = "INSERT INTO user_details (user_id, name, ic, phone, ndp, kursus, semester, bengkel,birth_date)
               VALUES ('$user_id', '$nama', '$ic', '$phone', '$ndp', '$kursus', '$semester', '$bengkel', '$birth_date')";
@@ -151,7 +148,12 @@ if (isset($_POST['updateprofile'])) {
     }
 
 
+ 
 
+
+    header("Location: " . $basePath2 . "/profile");
+    exit();
+    
 
 
 }
