@@ -6,10 +6,14 @@ require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
+ 
+
+
 
 
 require('database.php');
-
+include_once('functions/notification/pusher.php');
+ 
 //email
 
 include_once('functions/email/email.php');

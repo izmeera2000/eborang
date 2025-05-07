@@ -26,7 +26,16 @@ function permohonan_perlepasan()
 
     // } else {
 
-
+    // $response = publishToBeamsInterests(
+    //     ['student@gmail.com'],
+    //     'Order Shipped',
+    //     'Your order #456 is on the way!',
+    //     'https://yourapp.com/orders/456'
+    // );
+    
+    // if ($response) {
+    //     echo "Successfully sent: " . json_encode($response);
+    // }  
     
         // echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
         include 'views/system/student/permohonan/perlepasan.php';

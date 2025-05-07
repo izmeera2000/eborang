@@ -34,7 +34,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
         // $sql .= " AND p.status = '1'";
         $sql .= " AND p.lecturer_id = '$user_id' ";
     }
-    
+
     if ($role == 2) {
         // $sql .= " AND p.status = '2'";
         $sql .= " AND p.kb_id = '$user_id' ";
@@ -45,10 +45,10 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
 
     }
 
-    if ($role != 4 && $role != 1 ) {
+    if ($role != 4 && $role != 1) {
         $sql .= " AND udlect.bengkel = '$bengkel' ";
     }
- 
+
     $result = $conn->query($sql);
 
     // Store events grouped by permohonan_id
@@ -240,6 +240,19 @@ if (isset($_POST['permohonan_request'])) {
             echo "File uploaded: " . $result['file_path'];
         } else {
             echo "Error: " . $result['message'];
+        }
+
+
+
+        $response = publishToBeamsInterests(
+            ["$lecturer_id"],
+            'Permohonan Request',
+            'A student has request',
+            'https://yourapp.com/orders/456'
+        );
+
+        if ($response) {
+            // echo "Successfully sent: " . json_encode($response);
         }
 
         // Redirect after success

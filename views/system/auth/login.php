@@ -79,7 +79,7 @@
   </main>
 <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/footer.php"); ?>
  
-<?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/script.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/script2.php"); ?>
 
 
 </body>
