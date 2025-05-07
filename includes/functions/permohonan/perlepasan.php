@@ -249,7 +249,7 @@ if (isset($_POST['permohonan_request'])) {
             ["$lecturer_id"],
             'Permohonan Request',
             'A student has request',
-            'https://yourapp.com/orders/456'
+             $rootPath . "/permohonan/senarai"
           );
 
         // Redirect after success
