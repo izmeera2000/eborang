@@ -237,9 +237,9 @@ if (isset($_POST['permohonan_request'])) {
         $result = uploadFile('bukti', 'assets/uploads/permohonan/' . $permohonan_id . '/');
 
         if ($result['success']) {
-            echo "File uploaded: " . $result['file_path'];
+            // echo "File uploaded: " . $result['file_path'];
         } else {
-            echo "Error: " . $result['message'];
+            // echo "Error: " . $result['message'];
         }
 
 
