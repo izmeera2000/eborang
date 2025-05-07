@@ -233,12 +233,12 @@ if (isset($_POST['permohonan_request'])) {
             mysqli_query($conn, $sql2);
         }
 
-        // publishToBeamsInterests(
-        //     ["$lecturer_id"],
-        //     'Permohonan Request',
-        //     'A student has request',
-        //     'https://yourapp.com/orders/456'
-        // );
+        publishToBeamsInterests(
+            ['123'],
+            'Permohonan Request',
+            'A student has request',
+            'https://yourapp.com/orders/456'
+        );
 
 
         $result = uploadFile('bukti', 'assets/uploads/permohonan/' . $permohonan_id . '/');
