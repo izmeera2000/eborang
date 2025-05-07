@@ -245,12 +245,15 @@ if (isset($_POST['permohonan_request'])) {
             // echo "Error: " . $result['message'];
         }
 
-        publishToBeamsInterests(
-            ["$lecturer_id"],
+        $result = publishToBeamsInterests(
+            [ (string)$lecturer_id ],    // or ['2'] for testing
             'Permohonan Request',
             'A student has request',
-             $rootPath . "/permohonan/senarai"
-          );
+              "{$rootPath}/permohonan/senarai",
+
+        );
+        
+ 
 
         // Redirect after success
         header("Location: " . $basePath2 . "/permohonan/perlepasan");
