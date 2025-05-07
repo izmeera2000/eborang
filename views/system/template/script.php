@@ -48,9 +48,9 @@
           beamsClient.start()
             .then(() => {
               // Subscribe the device to the correct interest
-              beamsClient.addDeviceInterest('debug-test')
+              beamsClient.addDeviceInterest('debug-test2')
                 .then(() => {
-                  console.log('Successfully subscribed to debug-test');
+                  console.log('Successfully subscribed to debug-test2');
                 })
                 .catch(err => {
                   console.error('Error subscribing to interest', err);
