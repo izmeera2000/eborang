@@ -41,8 +41,7 @@
 
           const beamsClient = new PusherPushNotifications.Client({
             instanceId: 'fdd92782-8efa-4d4a-b49d-d59a098a894d',
-            serviceWorkerRegistration: registration  // 🔑 THIS is required
-          });
+           });
 
 
           beamsClient.start()
