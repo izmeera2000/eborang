@@ -245,14 +245,7 @@ if (isset($_POST['permohonan_request'])) {
             // echo "Error: " . $result['message'];
         }
 
-
-        publishToBeamsInterests(
-            ['2'],
-            'Permohonan Request',
-            'A student has request',
-            'https://yourapp.com/orders/456'
-        );
-      
+  
 
         // Redirect after success
         header("Location: " . $basePath2 . "/permohonan/perlepasan");

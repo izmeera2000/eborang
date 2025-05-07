@@ -26,17 +26,19 @@ function permohonan_perlepasan()
 
     // } else {
 
-    // $response = publishToBeamsInterests(
-    //     ['student@gmail.com'],
-    //     'Order Shipped',
-    //     'Your order #456 is on the way!',
-    //     'https://yourapp.com/orders/456'
-    // );
+    try {
+        $result = publishToBeamsInterests(
+          ['2'],
+          'Permohonan Request',
+          'A student has request',
+          'https://yourapp.com/orders/456'
+        );
+        echo '<pre>'; var_dump($result); echo '</pre>';
+    } catch (\Throwable $e) {
+        echo 'Caught exception: ', $e->getMessage();
+    }
     
-    // if ($response) {
-    //     echo "Successfully sent: " . json_encode($response);
-    // }  
-
+  
 
 
     
