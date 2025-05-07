@@ -233,11 +233,29 @@ if (isset($_POST['permohonan_request'])) {
             mysqli_query($conn, $sql2);
         }
 
-        publishToBeamsInterests(
-            ['123'],
-            'Permohonan Request',
-            'A student has request',
-            'https://yourapp.com/orders/456'
+        // publishToBeamsInterests(
+        //     ['123'],
+        //     'Permohonan Request',
+        //     'A student has request',
+        //     'https://yourapp.com/orders/456'
+        // );
+
+        $beamsClient = new PushNotifications([
+            "instanceId" => $_ENV['pusher_9_id'],
+            "secretKey" => $_ENV['pusher_9_key']
+        ]);
+    
+        $beamsClient->publishToInterests(
+            'test3',
+            [
+                'web' => [
+                    'notification' => [
+                        'title' => 'test3',
+                        'body' => 'test3',
+                        'deep_link' => 'test3',
+                    ],
+                ],
+            ]
         );
 
 
