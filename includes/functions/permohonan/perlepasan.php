@@ -233,13 +233,7 @@ if (isset($_POST['permohonan_request'])) {
             mysqli_query($conn, $sql2);
         }
 
-        publishToBeamsInterests(
-            ['123'],
-            'Permohonan Request',
-            'A student has request',
-            'https://yourapp.com/orders/456'
-        );
-
+  
  
 
 
