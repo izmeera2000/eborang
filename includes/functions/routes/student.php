@@ -25,17 +25,7 @@ function permohonan_perlepasan()
     //     include 'views/system/guide/dashboard.php';
 
     // } else {
-        $lecturer_id = "2";
 
-        $deeplink = "{$rootPath}/permohonan/senarai";
- 
-         publishToBeamsInterests(
-            [ $lecturer_id ],   
-          'Permohonan Request',
-          'A student has request',
-          $deeplink 
-        );
-     
   
 
 
