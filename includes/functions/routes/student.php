@@ -26,18 +26,14 @@ function permohonan_perlepasan()
 
     // } else {
 
-    try {
+ 
         $result = publishToBeamsInterests(
           ['2'],
           'Permohonan Request',
           'A student has request',
           'https://yourapp.com/orders/456'
         );
-        return json_decode(json_encode($response), true);
-    } catch (\Throwable $e) {
-        error_log('[Beams] publish failed: ' . $e->getMessage());
-     }
-    
+     
   
 
 

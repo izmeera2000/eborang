@@ -12,18 +12,28 @@ function publishToBeamsInterests(array $interests, string $title, string $body, 
         "secretKey" => $_ENV['pusher_9_key']
     ]);
 
-    $beamsClient->publishToInterests(
-        $interests,
-        [
-            'web' => [
-                'notification' => [
-                    'title' => $title,
-                    'body' => $body,
-                    'deep_link' => $deepLink,
+    try {
+        // Capture the response
+        $response = $beamsClient->publishToInterests(
+            $interests,
+            [
+                'web' => [
+                    'notification' => [
+                        'title'     => $title,
+                        'body'      => $body,
+                        'deep_link' => $deepLink,
+                    ],
                 ],
-            ],
-        ]
-    );
+            ]
+        );
+
+        // Convert stdClass → array and return
+        return json_decode(json_encode($response), true);
+
+    } catch (\Throwable $e) {
+        error_log('[Beams] publish failed: ' . $e->getMessage());
+        return null;
+    }
 
 
 }
