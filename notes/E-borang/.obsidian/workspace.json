@@ -11,14 +11,17 @@
             "id": "805d7b909c63b1e3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "MYSQL.md",
-                "mode": "source",
-                "source": false
+                "file": "Flow.canvas",
+                "viewState": {
+                  "x": -175,
+                  "y": 170,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "MYSQL"
+              "icon": "lucide-layout-dashboard",
+              "title": "Flow"
             }
           }
         ]
@@ -170,11 +173,11 @@
   },
   "active": "805d7b909c63b1e3",
   "lastOpenFiles": [
+    "Welcome.md",
+    "Role.md",
     "Flow.canvas",
     "MYSQL.md",
     "Backend.md",
-    "Role.md",
-    "Welcome.md",
     "Flow.md"
   ]
 }
