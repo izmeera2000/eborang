@@ -33,10 +33,10 @@ function permohonan_perlepasan()
           'A student has request',
           'https://yourapp.com/orders/456'
         );
-        echo '<pre>'; var_dump($result); echo '</pre>';
+        return json_decode(json_encode($response), true);
     } catch (\Throwable $e) {
-        echo 'Caught exception: ', $e->getMessage();
-    }
+        error_log('[Beams] publish failed: ' . $e->getMessage());
+     }
     
   
 
