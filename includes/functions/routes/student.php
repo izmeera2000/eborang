@@ -27,12 +27,7 @@ function permohonan_perlepasan()
     // } else {
 
  
-        $result = publishToBeamsInterests(
-          ['2'],
-          'Permohonan Request',
-          'A student has request',
-          'https://yourapp.com/orders/456'
-        );
+ 
      
   
 
