@@ -28,43 +28,14 @@
 <script>
 
 
+const beamsClient = new PusherPushNotifications.Client({
+    instanceId: 'fdd92782-8efa-4d4a-b49d-d59a098a894d',
+  });
 
-
-
-
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js') // your custom path
-        .then(registration => {
-          console.log("Service Worker registered:", registration);
-
-          const beamsClient = new PusherPushNotifications.Client({
-            instanceId: 'fdd92782-8efa-4d4a-b49d-d59a098a894d',
-           });
-
-
-          beamsClient.start()
-            .then(() => {
-              // Subscribe the device to the correct interest
-              beamsClient.addDeviceInterest('testuser')
-                .then(() => {
-                  console.log('Successfully subscribed to testuser');
-                })
-                .catch(err => {
-                  console.error('Error subscribing to interest', err);
-                });
-            })
-            .catch((err) => {
-              console.error('Error initializing PusherBeams:', err);
-            });
-        })
-        .catch((err) => {
-          console.error('Error registering service worker:', err);
-        });
-
-    });
-  }
+  beamsClient.start()
+    .then(() => beamsClient.addDeviceInterest('hello'))
+    .then(() => console.log('Successfully registered and subscribed!'))
+    .catch(console.error);
 
 </script>
 
