@@ -255,7 +255,7 @@ if (isset($_POST['permohonan_request'])) {
 
         // Redirect after success
         header("Location: " . $basePath2 . "/permohonan/perlepasan");
-        exit();
+        // exit();
     }
 }
 
