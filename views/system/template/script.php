@@ -35,7 +35,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('<?php echo $rootPath; ?>/service-worker.js') // your custom path
+      navigator.serviceWorker.register('/service-worker.js') // your custom path
         .then(registration => {
           console.log("Service Worker registered:", registration);
 
