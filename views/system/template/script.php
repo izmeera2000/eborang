@@ -25,6 +25,11 @@
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?php echo $rootPath; ?>/assets/js/soft-ui-dashboard.min.js"></script>
 
+
+
+<script src="https://js.pusher.com/beams/2.1.0/push-notifications-cdn.js"></script>
+
+
 <script>
 
 
@@ -38,5 +43,3 @@ const beamsClient = new PusherPushNotifications.Client({
     .catch(console.error);
 
 </script>
-
-<script src="https://js.pusher.com/beams/2.1.0/push-notifications-cdn.js"></script>
