@@ -37,12 +37,7 @@ function permohonan_perlepasan()
     //     echo "Successfully sent: " . json_encode($response);
     // }  
 
-    publishToBeamsInterests(
-        ['2'],
-        'Permohonan Request',
-        'A student has request',
-        'https://yourapp.com/orders/456'
-    );
+
 
     
         // echo "<script>console.log(" . json_encode($_SESSION['user_details']) . ");</script>";
