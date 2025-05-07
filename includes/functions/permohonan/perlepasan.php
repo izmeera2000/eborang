@@ -241,20 +241,20 @@ if (isset($_POST['permohonan_request'])) {
         // );
 
 
-        // $result = uploadFile('bukti', 'assets/uploads/permohonan/' . $permohonan_id . '/');
+        $result = uploadFile('bukti', 'assets/uploads/permohonan/' . $permohonan_id . '/');
 
-        // if ($result['success']) {
-        //     echo "File uploaded: " . $result['file_path'];
-        // } else {
-        //     echo "Error: " . $result['message'];
-        // }
+        if ($result['success']) {
+            // echo "File uploaded: " . $result['file_path'];
+        } else {
+            // echo "Error: " . $result['message'];
+        }
 
 
 
       
 
         // Redirect after success
-        header("Location: " . $basePath2 . "/permohonan/perlepasan2");
+        header("Location: " . $basePath2 . "/permohonan/perlepasan");
         exit();
     }
 }
