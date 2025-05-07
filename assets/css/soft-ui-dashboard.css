@@ -29524,3 +29524,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
   transition-delay: 0s;
   transform: scale(1);
 }
+.ni {
+  font-family: "Nucleo" !important;
+}

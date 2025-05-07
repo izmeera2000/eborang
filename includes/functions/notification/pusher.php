@@ -51,3 +51,21 @@ function publishToBeamsInterests(array $interests, string $title, string $body, 
         return null;
     }
 }
+
+
+function sendPusherEvent($channel, $event, $data) {
+    $options = [
+        'cluster' => $_ENV['pusher_9a_cluster'],  // e.g., 'us2'
+        'useTLS' => true
+    ];
+
+    $pusher = new Pusher\Pusher(
+        $_ENV['pusher_9a_key'],      // Replace with your Pusher key
+        $_ENV['pusher_9a_secret'],   // Replace with your Pusher secret
+        $_ENV['pusher_9a_id'],   // Replace with your Pusher app ID
+        $options
+    );
+
+    // Trigger the event
+    return $pusher->trigger($channel, $event, $data);
+}

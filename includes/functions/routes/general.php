@@ -99,7 +99,7 @@ function dashboard()
     }
 
     if ($role == 'guard') {
- 
+
         include 'views/system/guard/dashboard.php';
 
     }

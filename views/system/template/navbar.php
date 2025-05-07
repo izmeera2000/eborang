@@ -38,7 +38,8 @@
         </li> -->
         <li class="nav-item d-flex align-items-center dropdown">
           <!-- The link to toggle dropdown -->
-          <button href="#" class="nav-link  text-body  font-weight-bold px-0 dropdown-toggle  " data-bs-toggle="dropdown" aria-expanded="true">
+          <button href="#" class="nav-link  text-body  font-weight-bold px-0 dropdown-toggle  "
+            data-bs-toggle="dropdown" aria-expanded="true">
             <i class="fa fa-user me-sm-1"></i>
             <span class="d-sm-inline d-none"><?php echo $_SESSION['user_details']['email'] ?></span>
           </button>
@@ -47,14 +48,14 @@
           <ul class="dropdown-menu  " aria-labelledby="navbarDropdownMenuLink2" data-bs-popper="static">
             <li>
               <a class="dropdown-item" href="<?php echo $rootPath; ?>/profile">
-                <i class="fa fa-user me-sm-1"></i>
+              <i class="fa  fa-address-card"></i>
                 Profile
               </a>
             </li>
             <li>
               <a class="dropdown-item" href="<?php echo $rootPath; ?>/logout">
-                <i class="fa fa-user me-sm-1"></i>
-                Sign Out
+              <i class="fas fa-sign-out-alt"></i>
+              Sign Out
               </a>
             </li>
           </ul>
@@ -68,7 +69,7 @@
             </div>
           </a>
         </li>
-        <li class="nav-item px-3 d-flex align-items-center">
+        <!-- <li class="nav-item px-3 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-body p-0">
             <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
           </a>
@@ -152,7 +153,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

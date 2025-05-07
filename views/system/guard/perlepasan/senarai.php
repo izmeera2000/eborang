@@ -30,7 +30,7 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
- 
+
                 <div class="col-12">
                     <div class="card card-calendar">
                         <div class="card-body p-3">
@@ -49,7 +49,7 @@
                 <div class="modal-dialog  modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="eventModalLabel">Booking</h5>
+                            <h5 class="modal-title" id="eventModalLabel">Pelepasan</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -123,6 +123,7 @@
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/script.php"); ?>
 
+    <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
 
     <script>
 
@@ -262,6 +263,22 @@
             const day = String(date.getDate()).padStart(2, '0'); // ensure two digits
             return `${year}-${month}-${day}`;
         }
+
+
+
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('11e3f5950448ddf8e399', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('guard');
+        channel.bind('pelepasan', function (data) {
+            calendar.refetchEvents();
+        });
+
     </script>
 
 

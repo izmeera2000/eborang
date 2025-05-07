@@ -49,7 +49,7 @@
                 <div class="modal-dialog  modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="eventModalLabel">Booking</h5>
+                            <h5 class="modal-title" id="eventModalLabel">Permohonan</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -75,6 +75,7 @@
                                         </li>
                                     </ul>
 
+                                    <input type="hidden" name="student_id" id="student_id">
                                     <label for="exampleFormControlSelect1" class="mt-2">Jenis Permohonan </label>
                                     <input class="form-control" type="text" id="permohonan_type">
 
@@ -211,6 +212,7 @@
                 document.getElementById('student_name').innerText = info.event.extendedProps.student_name || '';
                 document.getElementById('ndp').innerText = info.event.extendedProps.ndp || '';
                 document.getElementById('student_image').src = info.event.extendedProps.student_image || '';
+                document.getElementById('student_id').value = info.event.extendedProps.student_id || '';
 
                 const filePreview = document.getElementById('file_preview');
                 filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src

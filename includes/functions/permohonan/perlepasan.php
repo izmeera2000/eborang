@@ -75,6 +75,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
 
         $student_name = $row['student_name'];
         $ndp = $row['ndp'];
+        $student_id = $row['user_id'];
 
         if ($row['student_image'] == NULL) {
             $student_image = "$rootPath/assets/img/user/nopic.png";
@@ -158,6 +159,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
                 'student_name' => $student_name,
                 'ndp' => $ndp,
                 'student_image' => $student_image,
+                'student_id' => $student_id,
             ];
         } else {
             // Check the start time - only update if the current event starts earlier
