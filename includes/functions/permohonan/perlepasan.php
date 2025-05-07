@@ -234,7 +234,7 @@ if (isset($_POST['permohonan_request'])) {
         }
 
 
-        $result = uploadFile('bukti', 'assets/uploads/permohonan/' . $permohonan_id . '/');
+        // $result = uploadFile('bukti', 'assets/uploads/permohonan/' . $permohonan_id . '/');
 
         if ($result['success']) {
             // echo "File uploaded: " . $result['file_path'];
@@ -244,16 +244,14 @@ if (isset($_POST['permohonan_request'])) {
 
 
 
-        $response = publishToBeamsInterests(
+        publishToBeamsInterests(
             ["$lecturer_id"],
             'Permohonan Request',
             'A student has request',
             'https://yourapp.com/orders/456'
         );
 
-        if ($response) {
-            // echo "Successfully sent: " . json_encode($response);
-        }
+      
 
         // Redirect after success
         header("Location: " . $basePath2 . "/permohonan/perlepasan");
