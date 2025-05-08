@@ -4,8 +4,8 @@
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
       aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="<?php echo $rootPath; ?>/dashboard">
-      <img src="<?php echo $rootPath; ?>/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-      <span class="ms-1 font-weight-bold">Soft UI Dashboard 3</span>
+      <img src="<?php echo $rootPath; ?>/assets/img/logo.png" class="navbar-brand-img h-100" alt="main_logo">
+      <span class="ms-1 font-weight-bold">E-Borang</span>
     </a>
   </div>
   <hr class="horizontal dark mt-0">
