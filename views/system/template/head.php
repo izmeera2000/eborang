@@ -20,6 +20,7 @@
   
   <!-- CSS Files -->
   <link href="<?php echo $rootPath; ?>/assets/css/jquery.fancybox.css" rel="stylesheet" />
+  <link href="<?php echo $rootPath; ?>/assets/css/datatables.css" rel="stylesheet" />
   <link id="pagestyle" href="<?php echo $rootPath; ?>/assets/css/soft-ui-dashboard.css" rel="stylesheet" />
   
 </head>

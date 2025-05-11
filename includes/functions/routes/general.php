@@ -193,9 +193,13 @@ function permohonan_senarai()
 
 
     if ($role === 'student') {
-
+    $breadcrumbs = [
+        ['title' => 'Home', 'url' => ''],
+        ['title' => 'Permohonan', 'url' => '/permohonan'],
+        ['title' => 'Senarai', 'url' => '/Senarai'],
+    ];
  
-        // include 'views/system/student/permohonan/perlepasan.php';
+        include 'views/system/student/permohonan/senarai.php';
 
     }
 

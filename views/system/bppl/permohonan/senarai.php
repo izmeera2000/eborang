@@ -90,6 +90,9 @@
                                     <!-- <label for="exampleFormControlSelect1" class="mt-2">Bukti </label>
                                     <input class="form-control" type="file" id="bukti" required> -->
 
+                          <label for="reason" id="reasonLabel" class="mt-2 d-none ">Reason</label>
+                                    <input class="form-control  d-none" type="text" id="reason">
+
 
 
                                     <a class="btn btn-info mt-2" data-fancybox href="javascript:;" id="file_preview">
@@ -97,7 +100,7 @@
                                     </a>
 
                                 </div>
-                                <div id="auth_button">
+                                <div id="auth_button" class="d-none">
 
 
                                     <button type="submit" class="btn btn-danger"
@@ -215,12 +218,25 @@
                 filePreview.setAttribute('data-type', info.event.extendedProps.file_type);       // Set the type as 'image'
 
 
+                const reasonInput = $('#reason');
+                const reasonLabel = $('#reasonLabel');
 
-                if (info.event.extendedProps.status != '2') {
-                    $('#auth_button').addClass('d-none'); // Hide the buttons
+
+                const declineReason = info.event.extendedProps.reason; // Assuming `decline_reason` is part of extendedProps
+                console.log('Decline Reason:', declineReason);  // Check if it gets the correct value
+                console.log('status:', info.event.extendedProps.status);  // Check if it gets the correct value
+
+                if (info.event.extendedProps.status === '0' && declineReason) {
+                    reasonInput.val(declineReason);  // Set the reason in the input field
+                    reasonLabel.removeClass('d-none').show();  // Show the label
+                    reasonInput.removeClass('d-none').show();  // Show the input field
                 } else {
-                    $('#auth_button').removeClass('d-none'); // Show the buttons
+                    reasonInput.val('');  // Clear the input field
+                    reasonLabel.addClass('d-none').hide();  // Hide the label
+                    reasonInput.addClass('d-none').hide();  // Hide the input field
                 }
+
+ 
 
 
                 // while (currentDate < endDate) {
