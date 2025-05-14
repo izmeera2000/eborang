@@ -28,7 +28,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
             publishToBeamsInterests([ (string) $student_id ], 'Permohonan Accepted', 'Permohonan diterima', "{$rootPath}/permohonan/senarai");
             sendPusherEvent('guard', 'pelepasan', ['message' => 'Hello world!']);
         } else {
-            $status = '2'; // Accepted by KB
+            $status = '2'; // Accepted by LECT
             publishToBeamsInterests([ (string) $kb_id ], 'Permohonan Request', 'A student has request', "{$rootPath}/permohonan/senarai");
             publishToBeamsInterests([ (string) $student_id ], 'Permohonan Accepted Oleh Lecturer', 'Permohonan diterima', "{$rootPath}/permohonan/senarai");
         }
