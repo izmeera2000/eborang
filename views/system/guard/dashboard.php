@@ -154,10 +154,10 @@
                   </div>
                   <div class="col-sm-auto col-8 my-auto">
                     <div class="h-100">
-                      <h5 class="mb-1 font-weight-bolder">
+                      <h5 class="mb-1 font-weight-bolder text-wrap">
                         ${row.student_name}
                       </h5>
-                      <p class="mb-0 font-weight-bold text-sm">
+                      <p class="mb-0 font-weight-bold text-sm text-wrap">
                         ${row.ndp}
                       </p>
                     </div>
@@ -223,10 +223,10 @@
           
                   <div class="col-sm-auto col-12 mt-sm-1">
                     <div class="h-100">
-                      <h5 class="mb-1 font-weight-bolder">
+                      <h5 class="mb-1 font-weight-bolder text-wrap">
                         ${row.lecturer_name}
                       </h5>
-                      <p class="mb-0 font-weight-bold text-sm">
+                      <p class="mb-0 font-weight-bold text-sm text-wrap">
                         ${row.lecturer_phone}
                       </p>
                     </div>
