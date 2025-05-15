@@ -213,7 +213,7 @@
                                 <div class="col-2  ">
 
                                     <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0" type="submit"
-                                        name="staffadd">Update</button>
+                                        name="staffadd">Tambah</button>
                                 </div>
 
                             </div>

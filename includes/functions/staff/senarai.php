@@ -6,6 +6,7 @@ if (isset($_POST['senarai_staff_list'])) {
     $length = isset($_POST['length']) && $_POST['length'] > 0 ? (int) $_POST['length'] : 5;
     $search_value = isset($_POST['search']['value']) ? trim($_POST['search']['value']) : '';
     $draw = isset($_POST['draw']) ? (int) $_POST['draw'] : 1;
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : 0;
 
     // Start building the SQL query
     $sql = "SELECT 
@@ -36,7 +37,7 @@ if (isset($_POST['senarai_staff_list'])) {
         $whereClause .= "ud.phone LIKE '%$search_value_escaped%' OR ";
         $whereClause .= "ur.name LIKE '%$search_value_escaped%' OR ";
         $whereClause .= "ud.bengkel LIKE '%$search_value_escaped%')";
-     }
+    }
 
 
     if (empty($whereClause)) {
@@ -46,7 +47,12 @@ if (isset($_POST['senarai_staff_list'])) {
     }
     $whereClause .= " ur.name != 'student' ";
 
-
+    if (empty($whereClause)) {
+        $whereClause .= " WHERE ";
+    } else {
+        $whereClause .= " AND ";
+    }
+    $whereClause .= " user_id != '$user_id' ";
 
     $sql .= $whereClause;
 
@@ -83,7 +89,7 @@ if (isset($_POST['senarai_staff_list'])) {
             'role' => $row['role'],  // Role is now fetched from user_role table
             'user_name' => $row['user_name'],
             'ic' => $row['ic'],
-            'user_image' => $row['user_image'] ? $rootPath . "/assets/uploads/users/" . $row['user_id'] . "/" . $row['user_image'] : null,
+            'user_image' => $row['user_image'] ? $rootPath . "/assets/img/user/" . $row['user_id'] . "/" . $row['user_image'] : null,
             'phone' => $row['phone'],
             'birth_date' => $row['birth_date'],
             'bengkel' => $row['bengkel']

@@ -7,7 +7,6 @@ kanban-plugin: board
 ## To Do
 
 - [ ] DUMMY DATA
-- [ ] Add Register Staff
 
 
 ## In Progress
@@ -20,6 +19,7 @@ kanban-plugin: board
 - [ ] PERMOHONAN (STUDENT)
 - [ ] DASHBOARD (LECT)
 - [ ] Profile change picture
+- [ ] Add Register Staff
 - [ ] PERMOHNAN REASON (LECT & KB)
 - [ ] DASHBOARD (BPPL)
 - [ ] DASHBOARD (GUARD)

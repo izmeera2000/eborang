@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 15, 2025 at 11:29 AM
+-- Generation Time: May 15, 2025 at 10:53 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `role` (`role`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -136,11 +136,13 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`
 (1, 'student', 'student@gmail.com', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 5, '2025-04-22 22:35:15'),
 (2, 'lect', 'lect@gmail.com', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 3, '2025-04-22 22:35:15'),
 (3, 'bppl', 'bppl@gmail.com', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 1, '2025-04-22 22:35:15'),
-(4, 'kb', 'kb@gmail.com', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 2, '2025-04-22 22:35:15'),
 (5, 'guard', 'guard@gmail.com', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 4, '2025-04-22 22:35:15'),
 (6, 'test123', 'test@123.com.my', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 5, '2025-05-03 17:00:43'),
 (7, 'test2123', 'test2@123.com.my', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 3, '2025-05-03 17:00:43'),
-(8, 'student3', 'student3@gmail.com', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 5, '2025-05-15 11:20:51');
+(8, 'student3', 'student3@gmail.com', '$2y$10$UHedN43A5Yl5ZmQ5AtQYLubdZ2uZ96wjPYvK6PN2ZFpw.WEKhnGBG', 5, '2025-05-15 11:20:51'),
+(13, '', 'rosnani@adtectaiping.edu.my', '$2y$10$6Tx2T.83gJqrhbGky5rvi.n/RuQAHYDkf3eTa600UvUNAT.z3pOlq', 2, '2025-05-15 22:30:07'),
+(14, '', 'fauziah@adtectaiping.edu.my', '$2y$10$KmS.tAfTFUKwsO1KLKAI/OCRu9pAGZykeJ7jLhvN9OZv32DF.cUkq', 3, '2025-05-15 22:39:58'),
+(15, '', 'badrul@adtectaiping.edu.my', '$2y$10$79gFkAqZVucZAfPtsAJ1SuKfOzG2adZR/WJ8e14wt8ogJGnOfJQCK', 2, '2025-05-15 22:42:46');
 
 -- --------------------------------------------------------
 
@@ -163,18 +165,21 @@ CREATE TABLE IF NOT EXISTS `user_details` (
   `bengkel` text COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_details`
 --
 
 INSERT INTO `user_details` (`id`, `user_id`, `name`, `ic`, `image`, `phone`, `birth_date`, `ndp`, `kursus`, `semester`, `bengkel`) VALUES
-(1, 1, 'asdsad', '123123', 'splash-1.png', '01123881290', '2025-04-26', '12321', '12321', 321321, 'komputer'),
+(1, 1, 'asdsad', '123123', 'splash-1.png', '01123881290', '2025-04-26', '12321', '12321', NULL, 'komputer'),
 (2, 2, 'lect', 'lec', NULL, '01123881290', NULL, NULL, NULL, NULL, 'komputer'),
-(3, 4, 'asdsad', '', NULL, '011221313', NULL, NULL, NULL, NULL, 'komputer'),
-(4, 6, 'test123', '12312321321', 'nopic.png', '1321321321', '2025-05-05', '123123', 'dtk', 3, 'komputer'),
-(5, 7, 'lect2', 'lec', NULL, '01123881290', NULL, NULL, NULL, NULL, 'meka');
+(4, 6, 'test123', '12312321321', 'nopic.png', '1321321321', '2025-05-05', '123123', 'dtk', NULL, 'komputer'),
+(5, 7, 'lect2', 'lec', NULL, '01123881290', NULL, NULL, NULL, NULL, 'meka'),
+(6, 3, 'asda', '12312321', 'splash-2.png', '13212321312', '2025-05-17', 'NULL', 'NULL', 0, 'NULL'),
+(8, 13, 'Siti Rosnani Binti Hussin', '12312321', 'images.png', '1231232', '2025-05-15', NULL, NULL, NULL, 'komputer'),
+(9, 14, 'Fauziah Binti Muhammad', '990585142322', 'images.png', '1231232132', '2025-05-13', NULL, NULL, NULL, 'komputer'),
+(10, 15, 'Mohd Badrul Hisham Bin Mamat', '12312311', 'images.png', '12321312321', '2025-05-17', NULL, NULL, NULL, 'mekatronik');
 
 -- --------------------------------------------------------
 

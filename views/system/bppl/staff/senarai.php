@@ -152,11 +152,11 @@
       $('#eventsTable').DataTable({
         processing: true,
         serverSide: true,
-        // stateSave: true, //dashboard doesnt have state save
+        stateSave: true, //dashboard doesnt have state save
         responsive: true,
         pageLength: 5,  // Number of entries per page (you can change this to whatever number you want)
-        lengthMenu: [5],  // Allow the user to change the number of entries shown per page
-        paging: false,         // Disable pagination
+        lengthMenu: [5,10,20],  // Allow the user to change the number of entries shown per page
+        paging: true,         // Disable pagination
 
         ajax: {
           url: "<?php echo $rootPath ?>/staff/senarai_db",
@@ -191,17 +191,17 @@
                 <div class="row justify-content-start align-items-start">
                   <div class="col-sm-auto col-4">
                     <div class="avatar avatar-lg position-relative">
-                      <img src="<?php echo $rootPath ?>/assets/img/user/${row.user_id}/${row.image}" 
+                      <img src="${row.user_image}" 
                           alt="${row.Lecturer_name}" 
                           class="w-100 border-radius-lg shadow-sm">
                     </div>
                   </div>
                   <div class="col-sm-auto col-8 my-auto">
                     <div class="h-100">
-                      <h5 class="mb-1 font-weight-bolder">
-                        ${row.name}
+                      <h5 class="mb-1 font-weight-bolder text-wrap">
+                        ${row.user_name}
                       </h5>
-                      <p class="mb-0 font-weight-bold text-sm">
+                      <p class="mb-0 font-weight-bold text-sm text-wrap">
                         ${row.ic}
                       </p>
                     </div>
@@ -222,10 +222,10 @@
           
                   <div class="col-sm-auto col-12 mt-sm-1">
                     <div class="h-100">
-                      <h5 class="mb-1 font-weight-bolder">
+                      <h5 class="mb-1 font-weight-bolder text-wrap">
                         ${row.email}
                       </h5>
-                      <p class="mb-0 font-weight-bold text-sm">
+                      <p class="mb-0 font-weight-bold text-sm text-wrap">
                         ${row.phone}
                       </p>
                     </div>
