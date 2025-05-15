@@ -144,25 +144,26 @@
             "data": null,
             "render": function (data, type, row) {
               return `
-      <div class="row justify-content-center align-items-center">
-        <div class="col-sm-auto col-4">
-          <div class="avatar avatar-lg position-relative">
-            <img src="<?php echo $rootPath ?>/assets/img/user/${row.student_id}/${row.image}" alt="${row.student_name}" class="w-100 border-radius-lg shadow-sm">
-          </div>
-        </div>
-        <div class="col-sm-auto col-8 my-auto">
-          <div class="h-100">
-            <h5 class="mb-1 font-weight-bolder">
-              ${row.student_name}
-            </h5>
-            <p class="mb-0 font-weight-bold text-sm">
-              ${row.ndp}
-            </p>
-          </div>
-        </div>
-        
-      </div>
-    `;
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-sm-auto col-4">
+                    <div class="avatar avatar-lg position-relative">
+                      <img src="<?php echo $rootPath ?>/assets/img/user/${row.student_id}/${row.image}" 
+                          alt="${row.student_name}" 
+                          class="w-100 border-radius-lg shadow-sm">
+                    </div>
+                  </div>
+                  <div class="col-sm-auto col-8 my-auto">
+                    <div class="h-100">
+                      <h5 class="mb-1 font-weight-bolder">
+                        ${row.student_name}
+                      </h5>
+                      <p class="mb-0 font-weight-bold text-sm">
+                        ${row.ndp}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              `;
             },
             "class": "",
             "responsivePriority": 1

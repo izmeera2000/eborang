@@ -29,7 +29,10 @@ if (isset($_POST['login'])) {
             // Check if the entered password matches the stored hashed password
             if (password_verify($password, $user['password'])) {
                 // Password is correct, store user details in session
+
                 $_SESSION['user_details'] = $user;
+
+                unset($_SESSION['user_details']['password']);
 
                 // Redirect to the dashboard
                 header("Location: " . $basePath2 . "/dashboard");

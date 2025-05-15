@@ -51,16 +51,21 @@ $routes = [
     //guard
     'perlepasan/senarai' => 'perlepasan_senarai',
 
+    //staff
+    'staff/tambah' => 'staff_tambah',
+    'staff/senarai' => 'staff_senarai',
 
 
     //fucntions
 
     //permohonan
-        'permohonan/senarai_calendar' => 'permohonan_senarai_calendar',
-        'permohonan/request' => 'permohonan_request',
-        'permohonan/auth' => 'permohonan_auth',
-  
- 
+    'permohonan/senarai_calendar' => 'permohonan_senarai_calendar',
+    'permohonan/request' => 'permohonan_request',
+    'permohonan/auth' => 'permohonan_auth',
+
+    'staff/senarai_db' => 'staff_senarai_db'
+
+
 ];
 
 
@@ -69,7 +74,7 @@ switch (true) {
         // Route exists, execute the corresponding function
         call_user_func($routes[$requestUri]);
         break;
- 
+
     default:
         // If none of the above conditions match, call notFound()
         notFound($requestUri);

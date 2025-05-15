@@ -262,12 +262,12 @@
             <ul class="nav ms-4 ps-3">
 
 
-              <li class="nav-item ">
+              <!-- <li class="nav-item ">
                 <a class="nav-link " href="<?php echo $rootPath; ?>/staff/tambah">
                   <span class="sidenav-mini-icon"> T </span>
                   <span class="sidenav-normal"> Tambah </span>
                 </a>
-              </li>
+              </li> -->
 
               <li class="nav-item ">
                 <a class="nav-link " href="<?php echo $rootPath; ?>/staff/senarai">

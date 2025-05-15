@@ -3,188 +3,133 @@
 if (isset($_POST['updateprofile'])) {
     $errors = array();
 
-    echo "<script>console.log('test');</script>";
-
+    echo "<script>console.log('testaa');</script>";
     echo "<script>console.log(" . json_encode($_POST) . ");</script>";
 
-
+    // Only handle user_id (this is required)
     if (!empty($_POST['user_id'])) {
         $user_id = mysqli_real_escape_string($conn, $_POST['user_id']);
+    } else {
+        // If user_id is missing, return or handle the error
+        die('User ID is required.');
     }
 
-    if (!empty($_POST['nama'])) {
-        $nama = mysqli_real_escape_string($conn, $_POST['nama']);
-    }
+    // Make all other fields optional by checking if they are set and not empty
+    $nama = !empty($_POST['nama']) ? mysqli_real_escape_string($conn, $_POST['nama']) : 'NULL';
+    $ic = !empty($_POST['ic']) ? mysqli_real_escape_string($conn, $_POST['ic']) : 'NULL';
+    $birth_date = !empty($_POST['birth_date']) ? mysqli_real_escape_string($conn, $_POST['birth_date']) : 'NULL';
+    $email = !empty($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : 'NULL';
+    $phone = !empty($_POST['phone']) ? mysqli_real_escape_string($conn, $_POST['phone']) : 'NULL';
+    $ndp = !empty($_POST['ndp']) ? mysqli_real_escape_string($conn, $_POST['ndp']) : 'NULL';
+    $bengkel = !empty($_POST['bengkel']) ? mysqli_real_escape_string($conn, $_POST['bengkel']) : 'NULL';
+    $kursus = !empty($_POST['kursus']) ? mysqli_real_escape_string($conn, $_POST['kursus']) : 'NULL';
+    $semester = !empty($_POST['semester']) ? mysqli_real_escape_string($conn, $_POST['semester']) : 'NULL';
 
-     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == UPLOAD_ERR_OK) {
-        // Handle the profile picture upload
-        $uploadResult = uploadFile('profile_picture',  'assets/img/user/' . $user_id . '/');
- 
+    // Handle the profile picture upload, making sure it’s optional
+    $newImageName = 'NULL';  // Default is NULL (no image)
+
+    // Check if a file is actually uploaded and there is no error
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+        // Proceed with file upload handling
+        $uploadResult = uploadFile('profile_picture', 'assets/img/user/' . $user_id . '/');
+
         if ($uploadResult['success']) {
-            // Check if the user already has a profile picture
+            // If a new profile picture is uploaded, delete the old one
             if (!empty($_SESSION['user_details']['image'])) {
-                // Delete the old image from the directory
                 $oldImagePath = 'assets/img/user/' . $_SESSION['user_details']['id'] . '/' . $_SESSION['user_details']['image'];
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath); // Delete the old file
                 }
             }
 
-            // Update the image in the database
-            $newImageName = $uploadResult['file_name']; // Get the new uploaded file name
-       
-
-        }  
-    }
-
-
-    // Check if 'ic' is not empty and sanitize it
-    if (!empty($_POST['ic'])) {
-        $ic = mysqli_real_escape_string($conn, $_POST['ic']);
-    }
-
-    // Check if 'birth_date' is not empty and sanitize it
-    if (!empty($_POST['birth_date'])) {
-        $birth_date = mysqli_real_escape_string($conn, $_POST['birth_date']);
-    }
-
-    // Check if 'email' is not empty and sanitize it
-    if (!empty($_POST['email'])) {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-    }
-
-    // Check if 'phone' is not empty and sanitize it
-    if (!empty($_POST['phone'])) {
-        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    }
-
-    // Check and sanitize 'ndp'
-    if (!empty($_POST['ndp'])) {
-        $ndp = mysqli_real_escape_string($conn, $_POST['ndp']);
-    }
-
-    // Check and sanitize 'bengkel'
-    if (!empty($_POST['bengkel'])) {
-        $bengkel = mysqli_real_escape_string($conn, $_POST['bengkel']);
-    }
-
-    // Check and sanitize 'kursus'
-    if (!empty($_POST['kursus'])) {
-        $kursus = mysqli_real_escape_string($conn, $_POST['kursus']);
-    }
-
-    // Check and sanitize 'semester'
-    if (!empty($_POST['semester'])) {
-        $semester = mysqli_real_escape_string($conn, $_POST['semester']);
+            // Get the new uploaded image name
+            $newImageName = $uploadResult['file_name'];
+        }
     }
 
 
 
-
-
-
-    $user_check_query = "SELECT * FROM user_details WHERE  id='$user_id'    LIMIT 1";
+    // Check if the user exists in the database
+    $user_check_query = "SELECT * FROM user_details WHERE user_id='$user_id' LIMIT 1 ";
     $result = mysqli_query($conn, $user_check_query);
     $user_details = mysqli_fetch_assoc($result);
 
-    if (!$user_details) { // if user exists
+    if (!$user_details) { // if the user does not exist, insert a new record
 
-        // Create the SQL query to insert data into the user_details table
-        $query = "INSERT INTO user_details (user_id, name, ic, phone, ndp, kursus, semester, bengkel,birth_date)
-              VALUES ('$user_id', '$nama', '$ic', '$phone', '$ndp', '$kursus', '$semester', '$bengkel', '$birth_date')";
+        // Prepare the insert query, including image if a new one is uploaded
+        $query = "INSERT INTO user_details (user_id, name, ic, phone, ndp, kursus, semester, bengkel, birth_date" .
+            ($newImageName !== 'NULL' && !empty($newImageName) ? ", image" : "") .
+            ") VALUES ('$user_id', '$nama', '$ic', '$phone', '$ndp', '$kursus', '$semester', '$bengkel', '$birth_date'" .
+            ($newImageName !== 'NULL' && !empty($newImageName) ? ", '$newImageName'" : "") .
+            ")";
         mysqli_query($conn, $query);
 
-        // Check each value individually before updating the session
-        if (!empty($nama)) {
-            $_SESSION['user_details']['nama'] = $nama;
-        }
-        if (!empty($ic)) {
-            $_SESSION['user_details']['ic'] = $ic;
-        }
-        if (!empty($birth_date)) {
-            $_SESSION['user_details']['birth_date'] = $birth_date;
-        }
-
-        if (!empty($phone)) {
-            $_SESSION['user_details']['phone'] = $phone;
-        }
-        if (!empty($ndp)) {
-            $_SESSION['user_details']['ndp'] = $ndp;
-        }
-        if (!empty($bengkel)) {
-            $_SESSION['user_details']['bengkel'] = $bengkel;
-        }
-        if (!empty($kursus)) {
-            $_SESSION['user_details']['kursus'] = $kursus;
-        }
-        if (!empty($semester)) {
-            $_SESSION['user_details']['semester'] = $semester;
-        }
+        // Update session data if available
+        $_SESSION['user_details'] = array_merge($_SESSION['user_details'], array_filter([
+            'nama' => $nama,
+            'ic' => $ic,
+            'birth_date' => $birth_date,
+            'phone' => $phone,
+            'ndp' => $ndp,
+            'bengkel' => $bengkel,
+            'kursus' => $kursus,
+            'semester' => $semester,
+            // Only include 'image' if it has a new value
+            'image' => ($newImageName !== 'NULL' && !empty($newImageName)) ? $newImageName : null
+        ]));
 
 
     } else {
+        // If user exists, update the existing record
 
+        // Prepare the query with dynamic image field handling
         $query = "UPDATE user_details SET 
-                       name = '$nama', 
-                       ic = '$ic', 
-                       birth_date = '$birth_date', 
-                        phone = '$phone', 
-                       ndp = '$ndp', 
-                       bengkel = '$bengkel', 
-                       kursus = '$kursus', 
-                       semester = '$semester' ,
-                       image = '$newImageName'
-                   WHERE user_id = '$user_id'";
+            name = '$nama', 
+            ic = '$ic', 
+            birth_date = '$birth_date', 
+            phone = '$phone', 
+            ndp = '$ndp', 
+            bengkel = '$bengkel', 
+            kursus = '$kursus', 
+            semester = '$semester'";
+
+        // Add the image field if there's a new image
+        if ($newImageName !== 'NULL' && !empty($newImageName)) {
+            $query .= ", image = '$newImageName'"; // Only add image if there is a new one
+        }
+
+        $query .= " WHERE user_id = '$user_id'";
+
+        // Execute the query
         mysqli_query($conn, $query);
 
 
-        // Check each value individually before updating the session
-        if (!empty($nama)) {
-            $_SESSION['user_details']['nama'] = $nama;
-        }
-        if (!empty($ic)) {
-            $_SESSION['user_details']['ic'] = $ic;
-        }
-        if (!empty($birth_date)) {
-            $_SESSION['user_details']['birth_date'] = $birth_date;
-        }
 
-        if (!empty($phone)) {
-            $_SESSION['user_details']['phone'] = $phone;
-        }
-        if (!empty($ndp)) {
-            $_SESSION['user_details']['ndp'] = $ndp;
-        }
-        if (!empty($bengkel)) {
-            $_SESSION['user_details']['bengkel'] = $bengkel;
-        }
-        if (!empty($kursus)) {
-            $_SESSION['user_details']['kursus'] = $kursus;
-        }
-        if (!empty($semester)) {
-            $_SESSION['user_details']['semester'] = $semester;
-        }
- if (isset($newImageName) && !empty($newImageName)) {
+        // Update session data if available
+        $_SESSION['user_details'] = array_merge($_SESSION['user_details'], array_filter([
+            'nama' => $nama,
+            'ic' => $ic,
+            'birth_date' => $birth_date,
+            'phone' => $phone,
+            'ndp' => $ndp,
+            'bengkel' => $bengkel,
+            'kursus' => $kursus,
+            'semester' => $semester,
+            // Only add 'image' if there's a new image
+            'image' => ($newImageName !== 'NULL' && !empty($newImageName)) ? $newImageName : null
+        ]));
 
-            // Update the session with the new image name
-            $_SESSION['user_details']['image'] = $newImageName;
-        }
+
 
     }
 
-
- 
-
-
+    // Redirect to profile page
     header("Location: " . $basePath2 . "/profile");
     exit();
-    
-
-
 }
 
 
- if (isset($_POST['updatepassword'])) {
+if (isset($_POST['updatepassword'])) {
     $errors = array();
 
     // Get current user ID from session (assuming user is logged in)
@@ -220,11 +165,10 @@ if (isset($_POST['updateprofile'])) {
         // Update the password in the database
         $query = "UPDATE users SET password='$new_password_hash' WHERE id='$user_id'";
         mysqli_query($conn, $query);
- 
+
 
         // Redirect to the profile page with success message
-    header("Location: " . $basePath2 . "/profile");
+        header("Location: " . $basePath2 . "/profile");
         exit();
     }
 }
- 
