@@ -44,6 +44,8 @@
 
             </div>
 
+            
+
             <!-- //modal -->
             <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
                 <div class="modal-dialog  modal-dialog-centered">

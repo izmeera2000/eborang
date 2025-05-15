@@ -73,24 +73,27 @@ if (isset($_POST['register'])) {
 
   }
 
-  if (count($errors) == 0) {
-    $password = md5($password1);
+if (count($errors) == 0) {
+    // Hash the password using password_hash() instead of md5
+    $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO users (username,email,password,role) 
-                          VALUES('$username','$email','$password','$role')";
+    // Insert the user details into the database with the hashed password
+    $query = "INSERT INTO users (username, email, password, role) 
+              VALUES('$username', '$email', '$password_hash', '$role')";
     mysqli_query($conn, $query);
 
-
+    // Store the user's session details (note that we don't store the password in the session for security reasons)
     $_SESSION['user_details'] = [
-      'username' => $username,
-      'email' => $email,
-      'role' => $role,
-
+        'username' => $username,
+        'email' => $email,
+        'role' => $role,
     ];
+
+    // Redirect to login page
     header("Location: " . $basePath2 . "/login");
     exit();
+}
 
-  }
 
 
 

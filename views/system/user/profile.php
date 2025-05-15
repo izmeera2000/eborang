@@ -31,27 +31,46 @@
     <div class="container-fluid my-3 py-3">
       <div class="row mb-5">
         <form method="POST" enctype="multipart/form-data">
+
+          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_details']['id'] ?? ''; ?>">
+
           <div class="col-12">
-            <!-- Card Profile -->
-            <div class="card card-body" id="profile">
-              <div class="row justify-content-center align-items-center">
-                <div class="col-sm-auto col-4">
-                  <div class="avatar avatar-xl position-relative">
-                    <img src="../../assets/img/bruce-mars.jpg" alt="bruce" class="w-100 border-radius-lg shadow-sm">
+            <div class="row">
+
+              <!-- Card Profile -->
+              <div class="card card-body" id="profile">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-sm-auto col-4">
+                    <div class="avatar avatar-xl position-relative">
+
+                      <?php
+
+                      // Check if the image path is valid and not empty
+                      if (isset($_SESSION['user_details']['image']) && !empty($_SESSION['user_details']['image'])) {
+                        $imagePath = $_SESSION['user_details']['image'];
+
+                        $imageSrc = $rootPath . '/assets/img/user/' . $_SESSION['user_details']['id'] . '/' . $imagePath;
+                      } else {
+
+                        // If image is null or empty, you can set a default image or leave it blank
+                        $imageSrc = $rootPath . '/assets/img/user/default.jpg'; // Default avatar
+                      }
+                      ?>
+                      <img src="<?php echo $imageSrc ?>" class="w-100 border-radius-lg shadow-sm">
+                    </div>
                   </div>
-                </div>
-                <div class="col-sm-auto col-8 my-auto">
-                  <div class="h-100">
-                    <h5 class="mb-1 font-weight-bolder">
-                      <?php echo $_SESSION['user_details']['email'] ?>
-                    </h5>
-                    <!-- <p class="mb-0 font-weight-bold text-sm">
+                  <div class="col-sm-auto col-8 my-auto">
+                    <div class="h-100">
+                      <h5 class="mb-1 font-weight-bolder">
+                        <?php echo $_SESSION['user_details']['email'] ?>
+                      </h5>
+                      <!-- <p class="mb-0 font-weight-bold text-sm">
                     CEO / Co-Founder
                   </p> -->
+                    </div>
                   </div>
-                </div>
-                <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
-                  <!-- <label class="form-check-label mb-0">
+                  <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
+                    <!-- <label class="form-check-label mb-0">
                   <small id="profileVisibility">
                     Switch to invisible
                   </small>
@@ -60,118 +79,213 @@
                   <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault23" checked=""
                     onchange="visible()">
                 </div> -->
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- Card Basic Info -->
-            <div class="card mt-4" id="basic-info">
-              <div class="card-header">
-                <h5>Maklumat Pelajar</h5>
-              </div>
-              <div class="card-body pt-0">
-                <div class="row">
-                  <div class="col-6">
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_details']['id'] ?? ''; ?>">
-                    <label class="form-label">Nama</label>
-                    <div class="input-group">
-                      <input name="nama" class="form-control" type="text" placeholder="Alec" required="required"
-                        onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['nama'] ?? ''; ?>" required>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label">IC</label>
-                    <div class="input-group">
-                      <input name="ic" class="form-control" type="text" placeholder="2324253351" required="required"
-                        onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required>
-                    </div>
-                  </div>
+            <div class="row">
+
+              <!-- Card Basic Info -->
+              <div class="card mt-4" id="basic-info">
+                <div class="card-header">
+                  <h5>Maklumat Pelajar</h5>
                 </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
-                      <div class="col">
-                        <label class="form-label mt-4">Birth Date</label>
-                        <div class="input-group">
-                          <input class="form-control" type="date" id="example-date-input" name="birth_date"
-                            value="<?php echo $_SESSION['user_details']['birth_date'] ?? ''; ?>" required>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label">Nama</label>
+                      <div class="input-group">
+                        <input name="nama" class="form-control" type="text" placeholder="Alec" required="required"
+                          onfocus="focused(this)" onfocusout="defocused(this)"
+                          value="<?php echo $_SESSION['user_details']['nama'] ?? ''; ?>" required>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label">IC</label>
+                      <div class="input-group">
+                        <input name="ic" class="form-control" type="text" placeholder="2324253351" required="required"
+                          onfocus="focused(this)" onfocusout="defocused(this)"
+                          value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col">
+                          <label class="form-label mt-4">Birth Date</label>
+                          <div class="input-group">
+                            <input class="form-control" type="date" id="example-date-input" name="birth_date"
+                              value="<?php echo $_SESSION['user_details']['birth_date'] ?? ''; ?>" required>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
-                    <label class="form-label mt-4">Email</label>
-                    <div class="input-group">
-                      <input id="email" name="email" class="form-control" type="email" placeholder="example@email.com"
-                        onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['email'] ?? ''; ?>" required>
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label mt-4">Email</label>
+                      <div class="input-group">
+                        <input id="email" name="email" class="form-control" type="email" placeholder="example@email.com"
+                          onfocus="focused(this)" onfocusout="defocused(this)"
+                          value="<?php echo $_SESSION['user_details']['email'] ?? ''; ?>" required>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label mt-4">Phone Number</label>
-                    <div class="input-group">
-                      <input id="phone" name="phone" class="form-control" type="number" placeholder="01123482315"
-                        onfocus="focused(this)" onfocusout="defocused(this)"
-                        value="<?php echo $_SESSION['user_details']['phone'] ?? ''; ?>" required>
+                    <div class="col-6">
+                      <label class="form-label mt-4">Phone Number</label>
+                      <div class="input-group">
+                        <input id="phone" name="phone" class="form-control" type="number" placeholder="01123482315"
+                          onfocus="focused(this)" onfocusout="defocused(this)"
+                          value="<?php echo $_SESSION['user_details']['phone'] ?? ''; ?>" required>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Card Change Password -->
+
+            <div class="row">
+
+              <!-- Card Change Password -->
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h5>Maklumat Uni</h5>
+                </div>
+                <div class="card-body pt-0">
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label mt-4">NDP</label>
+                      <div class="input-group">
+                        <input name="ndp" class="form-control" type="text" onfocus="focused(this)"
+                          onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label mt-4">Bengkel</label>
+                      <div class="input-group">
+                        <input name="bengkel" class="form-control" type="text" onfocus="focused(this)"
+                          onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['bengkel'] ?? ''; ?>"
+                          required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label mt-4">Kursus</label>
+                      <div class="input-group">
+                        <input name="kursus" class="form-control" type="text" onfocus="focused(this)"
+                          onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label mt-4">Semester</label>
+                      <div class="input-group">
+                        <input name="semester" class="form-control" type="text" onfocus="focused(this)"
+                          onfocusout="defocused(this)"
+                          value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>" required>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h5>Gambar</h5>
+                </div>
+                <div class="card-body pt-0">
+
+
+                  <div class="col-12">
+                    <label class="form-label">Profile Picture</label>
+                    <div class="input-group">
+                      <input type="file" name="profile_picture" class="form-control">
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="row justify-content-end">
+              <div class="col-2  ">
+
+                <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0" type="submit"
+                  name="updateprofile">Update</button>
+              </div>
+
+            </div>
+
+        </form>
+
+        <form method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_details']['id'] ?? ''; ?>">
+
+          <div class="row">
+
             <div class="card mt-4">
               <div class="card-header">
-                <h5>Maklumat Uni</h5>
+                <h5>Change Password</h5>
               </div>
               <div class="card-body pt-0">
-
-                <div class="row">
-                  <div class="col-6">
-                    <label class="form-label mt-4">NDP</label>
-                    <div class="input-group">
-                      <input name="ndp" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>" required>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label mt-4">Bengkel</label>
-                    <div class="input-group">
-                      <input name="bengkel" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['bengkel'] ?? ''; ?>" required>
-                    </div>
-                  </div>
+                <label class="form-label">Current password</label>
+                <div class="form-group">
+                  <input class="form-control" type="password" placeholder="Current password" name="current_password"
+                    onfocus="focused(this)" onfocusout="defocused(this)">
                 </div>
-                <div class="row">
-                  <div class="col-6">
-                    <label class="form-label mt-4">Kursus</label>
-                    <div class="input-group">
-                      <input name="kursus" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>" required>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label mt-4">Semester</label>
-                    <div class="input-group">
-                      <input name="semester" class="form-control" type="text" onfocus="focused(this)"
-                        onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>" required>
-                    </div>
-                  </div>
+                <label class="form-label">New password</label>
+                <div class="form-group">
+                  <input class="form-control" type="password" placeholder="New password" name="new_password"
+                    onfocus="focused(this)" onfocusout="defocused(this)">
                 </div>
-
-
-
+                <label class="form-label">Confirm new password</label>
+                <div class="form-group">
+                  <input class="form-control" type="password" placeholder="Confirm password" name="confirm_password"
+                    onfocus="focused(this)" onfocusout="defocused(this)">
+                </div>
+                <h5 class="mt-5">Password requirements</h5>
+                <p class="text-muted mb-2">
+                  Please follow this guide for a strong password:
+                </p>
+                <ul class="text-muted ps-4 mb-0 float-start">
+                  <li>
+                    <span class="text-sm">One special characters</span>
+                  </li>
+                  <li>
+                    <span class="text-sm">Min 6 characters</span>
+                  </li>
+                  <li>
+                    <span class="text-sm">One number (2 are recommended)</span>
+                  </li>
+                  <!-- <li>
+                    <span class="text-sm">Change it often</span>
+                  </li> -->
+                </ul>
+                <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0" type="submit"
+                  name="updatepassword">Update password</button>
               </div>
             </div>
-            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0" type="submit"
-              name="updateprofile">Update</button>
           </div>
         </form>
 
+
       </div>
-      <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/footer2.php"); ?>
+
+    </div>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/footer2.php"); ?>
 
     </div>
   </main>

@@ -150,8 +150,8 @@
 
 
 
- 
-        <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+
+        <div class="col-lg-6 col-12 mt-4 ">
           <div class="card shadow h-100">
             <div class="card-header pb-0 p-3">
               <h6 class="mb-0">Permohonan</h6>
@@ -174,7 +174,7 @@
 
 
 
- 
+
 
 
         <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/footer2.php"); ?>

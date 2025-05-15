@@ -289,7 +289,8 @@ if (isset($_POST['senarai_permohonan_list'])) {
                 ud.ndp, 
                 ud.image AS student_image, 
                 udlect.name AS lecturer_name, 
-                udlect.bengkel
+                udlect.bengkel , 
+                udlect.phone as lecturer_phone
             FROM permohonan_dates pd
             LEFT JOIN permohonan p ON pd.permohonan_id = p.id
             LEFT JOIN user_details ud ON p.user_id = ud.user_id
@@ -353,6 +354,20 @@ if (isset($_POST['senarai_permohonan_list'])) {
 
     }
 
+
+
+    if ($role == "4") {
+        if (empty($whereClause)) {
+            $whereClause .= " WHERE ";
+        } else {
+            $whereClause .= " AND ";
+        }
+        $whereClause .= "p.status = '3'";
+
+
+    }
+
+
     $sql .= $whereClause;
     $sql .= " GROUP BY p.id LIMIT $start, $length";
 
@@ -403,7 +418,10 @@ if (isset($_POST['senarai_permohonan_list'])) {
         $event_data = [
             'permohonan_id' => $row['permohonan_id'],
             'student_name' => $row['student_name'],
+            'student_id' => $row['user_id'],
+            'image' => $row['student_image'],
             'lecturer_name' => $row['lecturer_name'],
+            'lecturer_phone' => $row['lecturer_phone'],
             'place' => $row['place'],
             'purpose' => $row['purpose'],
             'start' => $row['start_date'],
@@ -429,5 +447,5 @@ if (isset($_POST['senarai_permohonan_list'])) {
     ];
 
     echo json_encode($response);
-    exit;
+     die();
 }

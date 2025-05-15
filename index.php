@@ -59,10 +59,8 @@ $routes = [
         'permohonan/senarai_calendar' => 'permohonan_senarai_calendar',
         'permohonan/request' => 'permohonan_request',
         'permohonan/auth' => 'permohonan_auth',
+  
  
-    //userprofile
-    'profile/update' => 'profile_update',
-
 ];
 
 

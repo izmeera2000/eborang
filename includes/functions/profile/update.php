@@ -16,6 +16,27 @@ if (isset($_POST['updateprofile'])) {
         $nama = mysqli_real_escape_string($conn, $_POST['nama']);
     }
 
+     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == UPLOAD_ERR_OK) {
+        // Handle the profile picture upload
+        $uploadResult = uploadFile('profile_picture',  'assets/img/user/' . $user_id . '/');
+ 
+        if ($uploadResult['success']) {
+            // Check if the user already has a profile picture
+            if (!empty($_SESSION['user_details']['image'])) {
+                // Delete the old image from the directory
+                $oldImagePath = 'assets/img/user/' . $_SESSION['user_details']['id'] . '/' . $_SESSION['user_details']['image'];
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath); // Delete the old file
+                }
+            }
+
+            // Update the image in the database
+            $newImageName = $uploadResult['file_name']; // Get the new uploaded file name
+       
+
+        }  
+    }
+
 
     // Check if 'ic' is not empty and sanitize it
     if (!empty($_POST['ic'])) {
@@ -111,7 +132,8 @@ if (isset($_POST['updateprofile'])) {
                        ndp = '$ndp', 
                        bengkel = '$bengkel', 
                        kursus = '$kursus', 
-                       semester = '$semester' 
+                       semester = '$semester' ,
+                       image = '$newImageName'
                    WHERE user_id = '$user_id'";
         mysqli_query($conn, $query);
 
@@ -142,8 +164,11 @@ if (isset($_POST['updateprofile'])) {
         if (!empty($semester)) {
             $_SESSION['user_details']['semester'] = $semester;
         }
+ if (isset($newImageName) && !empty($newImageName)) {
 
-
+            // Update the session with the new image name
+            $_SESSION['user_details']['image'] = $newImageName;
+        }
 
     }
 
@@ -157,3 +182,49 @@ if (isset($_POST['updateprofile'])) {
 
 
 }
+
+
+ if (isset($_POST['updatepassword'])) {
+    $errors = array();
+
+    // Get current user ID from session (assuming user is logged in)
+    $user_id = $_SESSION['user_details']['id'];
+
+    // Get posted form data
+    $current_password = mysqli_real_escape_string($conn, $_POST['current_password']);
+    $new_password = mysqli_real_escape_string($conn, $_POST['new_password']);
+    $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
+
+    // Check if the new password and confirm password match
+    if ($new_password != $confirm_password) {
+        $errors['password'] = "Passwords do not match!";
+    }
+
+    // Check if the current password is correct
+    if (empty($errors)) {
+        // Fetch the user's current hashed password from the database
+        $user_check_query = "SELECT * FROM users WHERE id='$user_id' LIMIT 1";
+        $result = mysqli_query($conn, $user_check_query);
+        $user = mysqli_fetch_assoc($result);
+
+        if (!$user || !password_verify($current_password, $user['password'])) {
+            $errors['current_password'] = "Current password is incorrect!";
+        }
+    }
+
+    // If there are no errors, update the password
+    if (count($errors) == 0) {
+        // Hash the new password using bcrypt (password_hash automatically uses bcrypt)
+        $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+        // Update the password in the database
+        $query = "UPDATE users SET password='$new_password_hash' WHERE id='$user_id'";
+        mysqli_query($conn, $query);
+ 
+
+        // Redirect to the profile page with success message
+    header("Location: " . $basePath2 . "/profile");
+        exit();
+    }
+}
+ 

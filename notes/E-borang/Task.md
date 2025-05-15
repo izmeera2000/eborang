@@ -6,8 +6,8 @@ kanban-plugin: board
 
 ## To Do
 
-- [ ] PERMOHONAN SENARAI (BPPL)
 - [ ] DUMMY DATA
+- [ ] Add Register Staff
 
 
 ## In Progress
@@ -16,11 +16,13 @@ kanban-plugin: board
 
 ## Done
 
+- [ ] PERMOHONAN SENARAI (BPPL)
 - [ ] PERMOHONAN (STUDENT)
-- [ ] DASHBOARD (GUARD)
 - [ ] DASHBOARD (LECT)
+- [ ] Profile change picture
 - [ ] PERMOHNAN REASON (LECT & KB)
 - [ ] DASHBOARD (BPPL)
+- [ ] DASHBOARD (GUARD)
 - [ ] DASHBOARD (KB)
 - [ ] DASHBOARD (STUDENT)
 - [ ] PERMOHONAN AUTH (LECT)
