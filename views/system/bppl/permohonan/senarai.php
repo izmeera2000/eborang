@@ -30,7 +30,7 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
- 
+
                 <div class="col-12">
                     <div class="card card-calendar">
                         <div class="card-body p-3">
@@ -90,12 +90,12 @@
                                     <!-- <label for="exampleFormControlSelect1" class="mt-2">Bukti </label>
                                     <input class="form-control" type="file" id="bukti" required> -->
 
-                          <label for="reason" id="reasonLabel" class="mt-2 d-none ">Reason</label>
+                                    <label for="reason" id="reasonLabel" class="mt-2 d-none ">Reason</label>
                                     <input class="form-control  d-none" type="text" id="reason">
 
 
 
-                                    <a class="btn btn-info mt-2" data-fancybox href="javascript:;" >
+                                    <a class="btn btn-info mt-2" data-fancybox href="javascript:;" id="file_preview">
                                         File
                                     </a>
 
@@ -213,10 +213,13 @@
                 document.getElementById('ndp').innerText = info.event.extendedProps.ndp || '';
                 document.getElementById('student_image').src = info.event.extendedProps.student_image || '';
 
-const filePreview = document.getElementById('file_preview');
-filePreview.removeAttribute('data-src');
-filePreview.removeAttribute('data-type');
-                 filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
+                const filePreview = document.getElementById('file_preview');
+                filePreview.removeAttribute('data-src');
+                filePreview.removeAttribute('data-type');
+                filePreview.removeAttribute('href');
+                
+                filePreview.setAttribute('href', info.event.extendedProps.file);
+                filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
                 filePreview.setAttribute('data-type', info.event.extendedProps.file_type);       // Set the type as 'image'
 
 
@@ -238,7 +241,7 @@ filePreview.removeAttribute('data-type');
                     reasonInput.addClass('d-none').hide();  // Hide the input field
                 }
 
- 
+
 
 
                 // while (currentDate < endDate) {
