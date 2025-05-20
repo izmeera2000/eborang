@@ -94,7 +94,7 @@
 
 
 
-                                    <a class="btn btn-info mt-2" data-fancybox href="javascript:;" id="file_preview">
+                                    <a class="btn btn-info mt-2" data-fancybox href="javascript:;" >
                                         File
                                     </a>
 
