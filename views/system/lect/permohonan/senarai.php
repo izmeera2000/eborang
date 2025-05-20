@@ -230,8 +230,11 @@
                 document.getElementById('student_id').value = info.event.extendedProps.student_id || '';
 
                 const filePreview = document.getElementById('file_preview');
-                filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
+filePreview.removeAttribute('data-src');
+filePreview.removeAttribute('data-type');
+                 filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
                 filePreview.setAttribute('data-type', info.event.extendedProps.file_type);       // Set the type as 'image'
+    // Set the type as 'image'
                 
 
                 const reasonInput = $('#reason');

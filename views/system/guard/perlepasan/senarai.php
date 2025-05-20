@@ -213,8 +213,10 @@
                 document.getElementById('ndp').innerText = info.event.extendedProps.ndp || '';
                 document.getElementById('student_image').src = info.event.extendedProps.student_image || '';
 
-                const filePreview = document.getElementById('file_preview');
-                filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
+const filePreview = document.getElementById('file_preview');
+filePreview.removeAttribute('data-src');
+filePreview.removeAttribute('data-type');
+                 filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
                 filePreview.setAttribute('data-type', info.event.extendedProps.file_type);       // Set the type as 'image'
 
 
