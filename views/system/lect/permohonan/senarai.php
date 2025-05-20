@@ -235,7 +235,6 @@
                 filePreview.removeAttribute('href');
                 
                 filePreview.setAttribute('href', info.event.extendedProps.file);
-                filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
                 filePreview.setAttribute('data-type', info.event.extendedProps.file_type);  
 
                 const reasonInput = $('#reason');
