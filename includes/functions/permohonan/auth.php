@@ -67,7 +67,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
 
         publishToBeamsInterests(
             [$student_id ],    // or ['2'] for testing
-            'Permohonan Accepted',
+            'Permohonan Rejected',
             'Permohonan dibatalkan',
               "{$rootPath}/permohonan/senarai",
         
