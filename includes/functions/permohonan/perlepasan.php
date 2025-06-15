@@ -21,11 +21,11 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
     $events = [];
 
     // Fetch permohonan dates within the given range
-    $sql = "SELECT pd.*, p.status, p.user_id , p.permohonan_type,p.status,p.days,p.time_slip,p.file,p.place,p.purpose,p.lecturer_id,p.kb_id,ud.name as student_name, ud.ndp,ud.image as student_image ,udlect.name as lecturer_name, udlect.bengkel
+    $sql = "SELECT pd.*, p.status, p.user_id ,p.reason, p.permohonan_type,p.status,p.days,p.time_slip,p.file,p.place,p.purpose,p.lecturer_id,p.kb_id,ud.name as student_name, ud.ndp,ud.image as student_image ,udlect.name as lecturer_name, udlect.bengkel
             FROM permohonan_dates pd
             LEFT JOIN permohonan p ON pd.permohonan_id = p.id
             LEFT JOIN user_details ud ON p.user_id = ud.user_id
-            LEFT JOIN user_details udlect ON p.lecturer_id = udlect.id
+            LEFT JOIN user_details udlect ON p.lecturer_id = udlect.user_id
             WHERE (pd.date BETWEEN '$start_date' AND '$end_date') ";
 
 
@@ -71,6 +71,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
         $lecturer_id = $row['lecturer_id'];
         $lecturer_name = $row['lecturer_name'];
         $kb_id = $row['kb_id'];
+        $reason = $row['reason'];
 
 
         $student_name = $row['student_name'];
@@ -158,6 +159,7 @@ if (isset($_POST['senarai_permohonan_calendar'])) {
                 'kb_id' => $kb_id,
                 'student_name' => $student_name,
                 'ndp' => $ndp,
+                'reason' => $reason,
                 'student_image' => $student_image,
                 'student_id' => $student_id,
             ];
@@ -235,8 +237,8 @@ if (isset($_POST['permohonan_request'])) {
             mysqli_query($conn, $sql2);
         }
 
-  
- 
+
+
 
 
         $result = uploadFile('bukti', 'assets/uploads/permohonan/' . $permohonan_id . '/');
@@ -248,14 +250,14 @@ if (isset($_POST['permohonan_request'])) {
         }
 
         $result = publishToBeamsInterests(
-            [ (string)$lecturer_id ],    // or ['2'] for testing
+            [(string) $lecturer_id],    // or ['2'] for testing
             'Permohonan Request',
             'A student has request',
-              "{$rootPath}/permohonan/senarai",
+            "{$rootPath}/permohonan/senarai",
 
         );
-        
- 
+
+
 
         // Redirect after success
         header("Location: " . $basePath2 . "/permohonan/perlepasan");
@@ -264,3 +266,186 @@ if (isset($_POST['permohonan_request'])) {
 }
 
 
+
+if (isset($_POST['senarai_permohonan_list'])) {
+
+
+    $start = isset($_POST['start']) && $_POST['start'] >= 0 ? (int) $_POST['start'] : 0;
+    $length = isset($_POST['length']) && $_POST['length'] > 0 ? (int) $_POST['length'] : 5;
+    $role = isset($_POST['role']) ? $_POST['role'] : 5;
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : 0;
+    $bengkel = isset($_POST['bengkel']) ? $_POST['bengkel'] : '';
+    $search_value = isset($_POST['search']['value']) ? trim($_POST['search']['value']) : '';
+    $draw = isset($_POST['draw']) ? (int) $_POST['draw'] : 1;
+
+
+    $sql = "SELECT 
+                p.id AS permohonan_id,
+                MIN(pd.date) AS start_date,
+                MAX(pd.date) AS end_date,
+                p.status, p.user_id, p.permohonan_type, p.status, p.days, p.time_slip, p.file, p.place, p.purpose,
+                p.lecturer_id, p.kb_id, 
+                ud.name AS student_name, 
+                ud.ndp, 
+                ud.image AS student_image, 
+                udlect.name AS lecturer_name, 
+                udlect.bengkel , 
+                udlect.phone as lecturer_phone
+            FROM permohonan_dates pd
+            LEFT JOIN permohonan p ON pd.permohonan_id = p.id
+            LEFT JOIN user_details ud ON p.user_id = ud.user_id
+            LEFT JOIN user_details udlect ON p.lecturer_id = udlect.user_id";
+
+    $whereClause = "";
+
+    if (!empty($_POST['start_date']) && !empty($_POST['end_date'])) {
+        $start_date = date('Y-m-d', strtotime($_POST['start_date']));
+        $end_date = date('Y-m-d', strtotime($_POST['end_date']));
+        $whereClause .= " WHERE (pd.date BETWEEN '$start_date' AND '$end_date')";
+    }
+
+    if (!empty($search_value)) {
+        $search_value_escaped = $conn->real_escape_string($search_value);
+        if (empty($whereClause)) {
+            $whereClause .= " WHERE ";
+        } else {
+            $whereClause .= " AND ";
+        }
+
+        $whereClause .= "(
+            ud.name LIKE '%$search_value_escaped%' OR 
+            ud.ndp LIKE '%$search_value_escaped%' OR 
+            udlect.name LIKE '%$search_value_escaped%' OR 
+            p.place LIKE '%$search_value_escaped%' OR 
+            p.purpose LIKE '%$search_value_escaped%'
+        )";
+
+
+    }
+
+    if ($role == "3") {
+        if (empty($whereClause)) {
+            $whereClause .= " WHERE ";
+        } else {
+            $whereClause .= " AND ";
+        }
+        $whereClause .= "p.lecturer_id = '$user_id'";
+
+
+    }
+    if ($role == "2") {
+        if (empty($whereClause)) {
+            $whereClause .= " WHERE ";
+        } else {
+            $whereClause .= " AND ";
+        }
+        $whereClause .= "udlect.bengkel = '$bengkel'";
+
+    }
+
+    if ($role == "5") {
+        if (empty($whereClause)) {
+            $whereClause .= " WHERE ";
+        } else {
+            $whereClause .= " AND ";
+        }
+        $whereClause .= "p.user_id = '$user_id'";
+
+
+    }
+
+
+
+    if ($role == "4") {
+        if (empty($whereClause)) {
+            $whereClause .= " WHERE ";
+        } else {
+            $whereClause .= " AND ";
+        }
+        $whereClause .= "p.status = '3'";
+
+
+    }
+
+
+    $sql .= $whereClause;
+    $sql .= " GROUP BY p.id LIMIT $start, $length";
+
+    $result = $conn->query($sql);
+
+    // Count filtered records
+    $count_filtered_sql = "SELECT COUNT(DISTINCT p.id) AS total 
+                           FROM permohonan_dates pd
+                           LEFT JOIN permohonan p ON pd.permohonan_id = p.id
+                           LEFT JOIN user_details ud ON p.user_id = ud.user_id
+                           LEFT JOIN user_details udlect ON p.lecturer_id = udlect.user_id";
+    $count_filtered_sql .= $whereClause;
+
+    $count_filtered_result = $conn->query($count_filtered_sql);
+    $filtered_records = $count_filtered_result->fetch_assoc()['total'];
+
+    // Count total records (without any filter)
+    $count_total_sql = "SELECT COUNT(DISTINCT p.id) AS total 
+                        FROM permohonan_dates pd
+                        LEFT JOIN permohonan p ON pd.permohonan_id = p.id";
+    $count_total_result = $conn->query($count_total_sql);
+    $total_records = $count_total_result->fetch_assoc()['total'];
+
+    // Prepare data array
+    $event_groups = [];
+
+    while ($row = $result->fetch_assoc()) {
+        if (!empty($row['file'])) {
+            $file_extension = strtolower(pathinfo($row['file'], PATHINFO_EXTENSION));
+            switch ($file_extension) {
+                case 'pdf':
+                    $file_type = 'iframe';
+                    break;
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                case 'gif':
+                    $file_type = 'image';
+                    break;
+                default:
+                    $file_type = 'unknown';
+                    break;
+            }
+        } else {
+            $file_type = null;
+        }
+
+        $event_data = [
+            'permohonan_id' => $row['permohonan_id'],
+            'student_name' => $row['student_name'],
+            'student_id' => $row['user_id'],
+            'image' => $row['student_image'],
+            'lecturer_name' => $row['lecturer_name'],
+            'lecturer_phone' => $row['lecturer_phone'],
+            'place' => $row['place'],
+            'purpose' => $row['purpose'],
+            'start' => $row['start_date'],
+            'end' => $row['end_date'],
+            'status' => $row['status'],
+            'bengkel' => $row['bengkel'],
+            'ndp' => $row['ndp'],
+            'file' => $file_type ? $rootPath . "/assets/uploads/permohonan/" . $row['permohonan_id'] . "/" . $row['file'] : null,
+            'file_ext' => $file_type,
+        ];
+
+        if (!empty($event_data['permohonan_id'])) {
+            $event_groups[] = $event_data;
+        }
+    }
+
+    // JSON response
+    $response = [
+        'draw' => $draw,
+        'recordsTotal' => (int) $total_records,
+        'recordsFiltered' => (int) $filtered_records,
+        'data' => $event_groups
+    ];
+
+    echo json_encode($response);
+     die();
+}

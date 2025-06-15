@@ -6,12 +6,12 @@ if (isset($_POST['register'])) {
   echo "<script>console.log('test');</script>";
 
 
-  if (empty($_POST['username'])) {
-    $errors['username'] = "username required";
-  } else {
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+  // if (empty($_POST['username'])) {
+  //   $errors['username'] = "username required";
+  // } else {
+  //   $username = mysqli_real_escape_string($conn, $_POST['username']);
 
-  }
+  // }
 
   if (empty($_POST['email'])) {
     $errors['email'] = "email required";
@@ -53,15 +53,15 @@ if (isset($_POST['register'])) {
 
   if (isset($username) && isset($email)) {
 
-    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email'    LIMIT 1";
+    $user_check_query = "SELECT * FROM users WHERE  email='$email'    LIMIT 1";
     $result = mysqli_query($conn, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
     if ($user) { // if user exists
-      if ($user['username'] === $username) {
+      // if ($user['username'] === $username) {
 
-        $errors['username'] = "username already registered";
-      }
+      //   $errors['username'] = "username already registered";
+      // }
 
       if ($user['email'] === $email) {
         $errors['email'] = "Email already registered";
@@ -73,24 +73,26 @@ if (isset($_POST['register'])) {
 
   }
 
-  if (count($errors) == 0) {
-    $password = md5($password1);
+if (count($errors) == 0) {
+    // Hash the password using password_hash() instead of md5
+    $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO users (username,email,password,role) 
-                          VALUES('$username','$email','$password','$role')";
+    // Insert the user details into the database with the hashed password
+    $query = "INSERT INTO users ( email, password, role) 
+              VALUES(  '$email', '$password_hash', '$role')";
     mysqli_query($conn, $query);
 
-
+    // Store the user's session details (note that we don't store the password in the session for security reasons)
     $_SESSION['user_details'] = [
-      'username' => $username,
-      'email' => $email,
-      'role' => $role,
-
+        'email' => $email,
+        'role' => $role,
     ];
+
+    // Redirect to login page
     header("Location: " . $basePath2 . "/login");
     exit();
+}
 
-  }
 
 
 

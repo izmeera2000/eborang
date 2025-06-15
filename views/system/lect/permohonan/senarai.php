@@ -77,20 +77,24 @@
                                     </ul>
                                     <input type="hidden" name="student_id" id="student_id">
                                     <label for="exampleFormControlSelect1" class="mt-2">Jenis Permohonan </label>
-                                    <input class="form-control" type="text" id="permohonan_type">
+                                    <input class="form-control" type="text" id="permohonan_type" readonly>
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Lecturer Nama </label>
-                                    <input class="form-control" type="hidden" id="lecturer_id">
-                                    <input class="form-control" type="text" id="lecturer_name">
+                                    <input class="form-control" type="hidden" id="lecturer_id" readonly>
+                                    <input class="form-control" type="text" id="lecturer_name" readonly>
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Tempat </label>
-                                    <input class="form-control" type="text" id="tempat">
+                                    <input class="form-control" type="text" id="tempat" readonly>
 
                                     <label for="exampleFormControlSelect1" class="mt-2">Tujuan </label>
-                                    <input class="form-control" type="text" id="tujuan">
+                                    <input class="form-control" type="text" id="tujuan" readonly>
 
-                                    <!-- <label for="exampleFormControlSelect1" class="mt-2">Bukti </label>
-                                    <input class="form-control" type="file" id="bukti" required> -->
+
+                                    <label for="reason" id="reasonLabel" class="mt-2 d-none ">Reason</label>
+                                    <input class="form-control  d-none" type="text" id="reason">
+
+
+
 
 
 
@@ -99,15 +103,28 @@
                                     </a>
 
                                 </div>
+
+
+
                                 <div id="auth_button">
 
 
-                                    <button type="submit" class="btn btn-danger"
-                                        name="permohonan_auth_decline">Decline</button>
+                                    <button type="button" class="btn btn-danger" id="declineButton">Decline</button>
+
                                     <button type="submit" class="btn btn-primary"
-                                        name="permohonan_auth_accept">Confirm</button>
+                                        name="permohonan_auth_accept">Approve</button>
 
                                 </div>
+
+                                <div id="declineReasonDiv" style="display:none;">
+                                    <label for="declineReason">Reason for Decline:</label>
+                                    <input type="text" id="declineReason" class="form-control" name="declineReason"
+                                        placeholder="Enter reason">
+                                    <button type="submit" class="btn btn-dark mt-1"
+                                        name="permohonan_auth_decline">Confirms</button>
+                                </div>
+
+
                             </form>
                         </div>
                     </div>
@@ -133,7 +150,7 @@
             initialView: "listDay",
             headerToolbar: {
                 start: 'title', // will normally be on the left. if RTL, will be on the right
-                center: 'listDay,listWeek,timeGridWeek,dayGridMonth',
+                center: 'listWeek,timeGridWeek,dayGridMonth',
                 end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
             },
             hiddenDays: [0, 6],
@@ -162,8 +179,6 @@
                 }
             },
             events: function (fetchInfo, successCallback, failureCallback) {
-                console.log("Sending request to fetch events..."); // Debug log
-
                 $.ajax({
                     url: "<?php echo $rootPath; ?>/permohonan/senarai_calendar",
                     type: "POST",
@@ -176,9 +191,9 @@
                         user_id: "<?php echo $_SESSION['user_details']['id']; ?>",
                         bengkel: "<?php echo $_SESSION['user_details']['bengkel']; ?>",
 
-                    }, // Secure POST request
+                    },
                     success: function (response) {
-                        console.log("Response received:", response); // Debug log
+                        console.log("Events:", response); // Check if data is being received
                         successCallback(response);
                     },
                     error: function (xhr, status, error) {
@@ -215,9 +230,30 @@
                 document.getElementById('student_id').value = info.event.extendedProps.student_id || '';
 
                 const filePreview = document.getElementById('file_preview');
-                filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
-                filePreview.setAttribute('data-type', info.event.extendedProps.file_type);       // Set the type as 'image'
+                filePreview.removeAttribute('data-src');
+                filePreview.removeAttribute('data-type');
+                filePreview.removeAttribute('href');
+                
+                filePreview.setAttribute('href', info.event.extendedProps.file);
+                filePreview.setAttribute('data-type', info.event.extendedProps.file_type);  
 
+                const reasonInput = $('#reason');
+                const reasonLabel = $('#reasonLabel');
+
+
+                const declineReason = info.event.extendedProps.reason; // Assuming `decline_reason` is part of extendedProps
+                console.log('Decline Reason:', declineReason);  // Check if it gets the correct value
+                console.log('status:', info.event.extendedProps.status);  // Check if it gets the correct value
+
+                if (info.event.extendedProps.status === '0' && declineReason) {
+                    reasonInput.val(declineReason);  // Set the reason in the input field
+                    reasonLabel.removeClass('d-none').show();  // Show the label
+                    reasonInput.removeClass('d-none').show();  // Show the input field
+                } else {
+                    reasonInput.val('');  // Clear the input field
+                    reasonLabel.addClass('d-none').hide();  // Hide the label
+                    reasonInput.addClass('d-none').hide();  // Hide the input field
+                }
 
 
                 if (info.event.extendedProps.status != '1') {
@@ -266,6 +302,15 @@
             const day = String(date.getDate()).padStart(2, '0'); // ensure two digits
             return `${year}-${month}-${day}`;
         }
+
+        $(document).ready(function () {
+            $('#declineButton').click(function () {
+                $('#declineReasonDiv').toggle(); // Toggle the visibility of the input field
+            });
+        });
+
+
+
     </script>
 
 

@@ -20,7 +20,7 @@
 
 <body class="g-sidenav-show  bg-gray-100">
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/sidenav.php"); ?>
+  <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/sidenav.php"); ?>
 
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -29,314 +29,65 @@
 
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-     
+
       <div class="row my-4">
-        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+
+        <div class="  col-12   mb-4">
           <div class="card">
             <div class="card-header pb-0">
               <div class="row">
                 <div class="col-lg-6 col-7">
-                  <h6>Pelepasan Keluar</h6>
+                  <h6>Perlepasan</h6>
                   <p class="text-sm mb-0">
-                    <!-- <i class="fa fa-check text-info" aria-hidden="true"></i> -->
-                    <span class="font-weight-bold ms-1">30 </span> hari ini
+                    <i class="fa fa-calendar-o text-info" aria-hidden="true"></i>
+                    <span class="font-weight-bold ms-1"></span> this month
                   </p>
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
                   <div class="dropdown float-lg-end pe-4">
-                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-secondary"></i>
-                    </a>
-                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                    </ul>
+
+                    <a class="btn btn-adtec" href="<?php echo $rootPath ?>/perlepasan/senarai">Lebih Lanjut</a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0" id="eventsTable">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Members</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  text-center opacity-7">ID
                       </th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Completion</th>
+                        Student_name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tujuan</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tempat
+                      </th>
+
+
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Lecturer_name</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Start</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        End</th>
+
+
                     </tr>
+
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="<?php echo $rootPath; ?>/assets/img/small-logos/logo-xd.svg"
-                              class="avatar avatar-sm me-3" alt="xd">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Soft UI XD Version</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-1.jpg" alt="team1">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-2.jpg" alt="team2">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Alexander Smith">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-3.jpg" alt="team3">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-4.jpg" alt="team4">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $14,000 </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-75 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">60%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="<?php echo $rootPath; ?>/assets/img/small-logos/logo-atlassian.svg"
-                              class="avatar avatar-sm me-3" alt="atlassian">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Add Progress Track</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-2.jpg" alt="team5">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-4.jpg" alt="team6">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $3,000 </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-75 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">10%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-10" role="progressbar" aria-valuenow="10"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="<?php echo $rootPath; ?>/assets/img/small-logos/logo-slack.svg"
-                              class="avatar avatar-sm me-3" alt="team7">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-3.jpg" alt="team8">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-1.jpg" alt="team9">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> Not set </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-75 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">100%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="<?php echo $rootPath; ?>/assets/img/small-logos/logo-spotify.svg"
-                              class="avatar avatar-sm me-3" alt="spotify">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-4.jpg" alt="user1">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-3.jpg" alt="user2">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Alexander Smith">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-4.jpg" alt="user3">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-1.jpg" alt="user4">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $20,500 </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-75 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">100%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="<?php echo $rootPath; ?>/assets/img/small-logos/logo-jira.svg"
-                              class="avatar avatar-sm me-3" alt="jira">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-4.jpg" alt="user5">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $500 </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-75 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">25%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-25" role="progressbar" aria-valuenow="25"
-                              aria-valuemin="0" aria-valuemax="25"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="<?php echo $rootPath; ?>/assets/img/small-logos/logo-invision.svg"
-                              class="avatar avatar-sm me-3" alt="invision">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-1.jpg" alt="user6">
-                          </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="<?php echo $rootPath; ?>/assets/img/team-4.jpg" alt="user7">
-                          </a>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $2,000 </span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="progress-wrapper w-75 mx-auto">
-                          <div class="progress-info">
-                            <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">40%</span>
-                            </div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info w-40" role="progressbar" aria-valuenow="40"
-                              aria-valuemin="0" aria-valuemax="40"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
+
+
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
-         
+
       </div>
- 
+
       <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/footer2.php"); ?>
 
     </div>
@@ -345,8 +96,172 @@
 
   <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/script.php"); ?>
 
- 
 
+  <script>
+
+    $(document).ready(function () {
+      const today = new Date().toISOString().split('T')[0]; // Format as YYYY-MM-DD
+
+
+      $('#eventsTable').DataTable({
+        processing: true,
+        serverSide: true,
+        stateSave: true, //dashboard doesnt have state save
+        responsive: true,
+        pageLength: 100,  // Number of entries per page (you can change this to whatever number you want)
+        // lengthMenu: [5],  // Allow the user to change the number of entries shown per page
+        paging: false,         // Disable pagination
+
+        ajax: {
+          url: "<?php echo $rootPath ?>/permohonan/senarai",
+          "type": "POST",
+          "data": function (d) {
+            d.senarai_permohonan_list = true;
+            d.role = '<?php echo $_SESSION['user_details']['role'] ?>';
+            d.user_id = '<?php echo $_SESSION['user_details']['id'] ?>';
+            d.user_id = '<?php echo $_SESSION['user_details']['id'] ?>';
+            d.start_date = today,
+              d.end_date = today,
+
+
+              console.log('Request Data:', d);
+          },
+
+          "error": function (xhr, status, error) {
+            console.error('AJAX Error:', status, error);
+          },
+          "dataSrc": function (json) {
+            console.log('dataSrc received data:', json);  // Log response here
+            return json.data || [];
+          },
+        },
+
+        columns: [
+          { "data": "permohonan_id", class: "text-center", responsivePriority: 4 },
+          // { "data": "student_name" },
+          // { "data": "lecturer_name" },
+          {
+            "data": null,
+            "render": function (data, type, row) {
+              return `
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-sm-auto col-4">
+                    <div class="avatar avatar-lg position-relative">
+                      <img src="<?php echo $rootPath ?>/assets/img/user/${row.student_id}/${row.image}" 
+                          alt="${row.student_name}" 
+                          class="w-100 border-radius-lg shadow-sm">
+                    </div>
+                  </div>
+                  <div class="col-sm-auto col-8 my-auto">
+                    <div class="h-100">
+                      <h5 class="mb-1 font-weight-bolder text-wrap">
+                        ${row.student_name}
+                      </h5>
+                      <p class="mb-0 font-weight-bold text-sm text-wrap">
+                        ${row.ndp}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              `;
+            },
+            "class": "",
+            "responsivePriority": 1
+          },
+
+
+          { "data": "purpose", class: "dtr-hidden ", responsivePriority: 3 },
+          { "data": "place", class: " dtr-hidden", responsivePriority: 3 },
+          // { "data": "start" },
+          // { "data": "end" },
+          // {
+          //   "data": "status",
+          //   "class": "justify-content-center text-center",  // Center the text and content
+          //   "render": function (data, type, row, meta) {
+          //     let buttonClass = '';
+          //     let buttonText = '';
+
+          //     // Assign button class and text based on status value
+          //     switch (data) {
+          //       case '0': // Assuming '1' means "approved"
+          //         buttonClass = 'btn-danger';
+          //         buttonText = 'Rejected';
+          //         break;
+          //       case '3': // Assuming '1' means "approved"
+          //         buttonClass = 'btn-success';
+          //         buttonText = 'Approved';
+          //         break;
+          //       case '1': // Assuming '2' means "pending"
+          //         buttonClass = 'btn-warning';
+          //         buttonText = 'Pending';
+          //         break;
+          //       case '2': // Assuming '3' means "rejected"
+          //         buttonClass = 'btn-info';
+          //         buttonText = 'Pending';
+          //         break;
+          //       default:
+          //         buttonClass = 'btn-secondary';
+          //         buttonText = 'Unknown';
+          //         break;
+          //     }
+
+          //     // Return the button HTML with dynamic class
+          //     return '<button class="btn ' + buttonClass + ' btn-sm  text-nowrap pe-none">' + buttonText + '</button>';
+          //   },
+          //   responsivePriority: 1
+
+          // },
+
+
+          // { "data": "lecturer_name", class: " dtr-hidden", responsivePriority: 9 },
+
+          {
+            "data": null,
+            "render": function (data, type, row) {
+              return `
+                <div class="row justify-content-center align-items-center">
+          
+                  <div class="col-sm-auto col-12 mt-sm-1">
+                    <div class="h-100">
+                      <h5 class="mb-1 font-weight-bolder text-wrap">
+                        ${row.lecturer_name}
+                      </h5>
+                      <p class="mb-0 font-weight-bold text-sm text-wrap">
+                        ${row.lecturer_phone}
+                      </p>
+                    </div>
+                  </div>
+                  
+                </div>
+              `;
+            },
+            "class": "dtr-hidden",
+            "responsivePriority": 2
+          },
+
+          { "data": "start", class: "dtr-hidden ", responsivePriority: 3 },
+          { "data": "end", class: " dtr-hidden", responsivePriority: 3 },
+          // {
+          //   "data": null,
+          //   "render": function (data, type, row) {
+          //     // Combine 'file' and 'file_ext' into a single string
+          //     var fileName = data.file;   // File extension
+
+          //     var fileExt = data.file_ext;   // File extension
+
+          //     // Display both values in the same column
+          //     return '<a class="btn btn-info mt-2" data-fancybox data-type="' + fileExt + '" data-src="' + fileName + '" href="javascript:;">File</a>';
+          //   },
+          //   "orderable": false,
+          //   "className": "text-center"
+          // },
+
+
+
+        ],
+      });
+    });
+  </script>
 
 </body>
 

@@ -44,6 +44,8 @@
 
             </div>
 
+            
+
             <!-- //modal -->
             <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
                 <div class="modal-dialog  modal-dialog-centered">
@@ -212,9 +214,12 @@
                 document.getElementById('student_image').src = info.event.extendedProps.student_image || '';
 
                 const filePreview = document.getElementById('file_preview');
-                filePreview.setAttribute('data-src', info.event.extendedProps.file);  // Set the image URL as data-src
-                filePreview.setAttribute('data-type', info.event.extendedProps.file_type);       // Set the type as 'image'
-
+                filePreview.removeAttribute('data-src');
+                filePreview.removeAttribute('data-type');
+                filePreview.removeAttribute('href');
+                
+                filePreview.setAttribute('href', info.event.extendedProps.file);
+                filePreview.setAttribute('data-type', info.event.extendedProps.file_type);  
 
 
                 if (info.event.extendedProps.status != '2') {

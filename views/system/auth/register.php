@@ -42,10 +42,10 @@
                 </div>
                 <div class="card-body pb-3">
                   <form role="form" method="POST">
-                    <label>Userame</label>
+                    <!-- <label>Userame</label>
                     <div class="mb-3">
                       <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="username">
-                    </div>
+                    </div> -->
                     <label>Email</label>
                     <div class="mb-3">
                       <input type="email" class="form-control" placeholder="Email" aria-label="Email" name="email">
