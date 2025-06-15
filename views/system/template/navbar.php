@@ -48,16 +48,17 @@
           <ul class="dropdown-menu  " aria-labelledby="navbarDropdownMenuLink2" data-bs-popper="static">
             <li>
               <a class="dropdown-item" href="<?php echo $rootPath; ?>/profile">
-              <i class="fa  fa-address-card"></i>
+                <i class="fa  fa-address-card"></i>
                 Profile
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="<?php echo $rootPath; ?>/logout">
-              <i class="fas fa-sign-out-alt"></i>
-              Sign Out
+              <a class="dropdown-item" href="javascript:void(0);" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                Sign Out
               </a>
             </li>
+
           </ul>
         </li>
         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

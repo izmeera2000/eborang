@@ -24,37 +24,67 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
     // Handle Accept case
     if (isset($_POST['permohonan_auth_accept'])) {
         if ($role == '2') {
-            $status = '3'; // Accepted by student
-            publishToBeamsInterests([ (string) $student_id ], 'Permohonan Accepted', 'Permohonan diterima', "{$rootPath}/permohonan/senarai");
+            $status = '3';
+
+
+            //student yg hantaq
+
+            publishToBeamsInterests(
+                [$student_id ],    
+                'Permohonan Accepted ',
+                'Permohonan diterima',
+                  "{$rootPath}/permohonan/senarai",
+            
+            );
+
+            //guard refresh calendar
             sendPusherEvent('guard', 'pelepasan', ['message' => 'Hello world!']);
         } else {
-            $status = '2'; // Accepted by LECT
-            publishToBeamsInterests([ (string) $kb_id ], 'Permohonan Request', 'A student has request', "{$rootPath}/permohonan/senarai");
-            publishToBeamsInterests([ (string) $student_id ], 'Permohonan Accepted Oleh Lecturer', 'Permohonan diterima', "{$rootPath}/permohonan/senarai");
+
+            $status = '2';
+
+             publishToBeamsInterests(
+                [$kb_id ],     
+                'Permohonan Request',
+                'A student has request',
+                  "{$rootPath}/permohonan/senarai",
+            
+            );
+
+            publishToBeamsInterests(
+                [$student_id ],    
+                'Permohonan Accepted Oleh Lecturer',
+                'Permohonan diterima',
+                  "{$rootPath}/permohonan/senarai",
+            
+            );
+
         }
-    }
-    // Handle Decline case
-    elseif (isset($_POST['permohonan_auth_decline'])) {
-        $status = '0'; // Declined
 
-        // Save the decline reason if provided
-        if ($declineReason) {
-            // You may need to update a `decline_reason` column in your database
-            $sql2 = "UPDATE permohonan SET reason = '$declineReason' WHERE id = '$id'";
-            mysqli_query($conn, $sql2);
-        publishToBeamsInterests([ (string) $student_id ], 'Permohonan Declined', $declineReason, "{$rootPath}/permohonan/senarai");
 
-        } else{
-        publishToBeamsInterests([ (string) $student_id ], 'Permohonan Declined', 'Permohonan dibatalkan', "{$rootPath}/permohonan/senarai");
+    } elseif (isset($_POST['permohonan_auth_decline'])) {
+        $status = '0';
 
-        }
+        publishToBeamsInterests(
+            [$student_id ],    // or ['2'] for testing
+            'Permohonan Accepted',
+            'Permohonan dibatalkan',
+              "{$rootPath}/permohonan/senarai",
+        
+        );
 
+    } else {
 
 
     }
 
-    // Update the main database record with the final status
-    $sql = "UPDATE permohonan SET status = '$status'";
+
+
+
+    $sql = "UPDATE permohonan SET 
+ 
+    status = '$status'";
+
     if ($role == '3') {
         $sql .= ", kb_id = '$kb_id'"; // If the role is 3, include the KB ID
     }

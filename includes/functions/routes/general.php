@@ -38,6 +38,8 @@ function logout()
     session_destroy(); // Destroy the session
     global $basePath2;
 
+    
+
     header("Location: " . $basePath2 . "/login");
     exit();
 }

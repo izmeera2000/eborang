@@ -11,23 +11,10 @@
             "id": "805d7b909c63b1e3",
             "type": "leaf",
             "state": {
-              "type": "kanban",
-              "state": {
-                "file": "Task.md",
-                "kanbanViewState": {
-                  "kanban-plugin": "board",
-                  "list-collapse": [
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false
-                  ]
-                }
-              },
-              "icon": "lucide-trello",
-              "title": "Task"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -181,8 +168,8 @@
   },
   "active": "805d7b909c63b1e3",
   "lastOpenFiles": [
-    "Welcome.md",
     "Task.md",
+    "Welcome.md",
     "MYSQL.md",
     "Role.md",
     "Backend.md",
