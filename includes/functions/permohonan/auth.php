@@ -36,7 +36,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
             //student yg hantaq
 
             publishToBeamsInterests(
-                [ (string) $student_id ],    
+                [$student_id ],    
                 'Permohonan Accepted ',
                 'Permohonan diterima',
                   "{$rootPath}/permohonan/senarai",
@@ -51,7 +51,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
             $status = '2';
 
              publishToBeamsInterests(
-                [ (string) $kb_id ],     
+                [$kb_id ],     
                 'Permohonan Request',
                 'A student has request',
                   "{$rootPath}/permohonan/senarai",
@@ -59,7 +59,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
             );
 
             publishToBeamsInterests(
-                [ (string) $student_id ],    
+                [$student_id ],    
                 'Permohonan Accepted Oleh Lecturer',
                 'Permohonan diterima',
                   "{$rootPath}/permohonan/senarai",
@@ -73,7 +73,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
         $status = '0';
 
         publishToBeamsInterests(
-            [ (string) $student_id ],    // or ['2'] for testing
+            [$student_id ],    // or ['2'] for testing
             'Permohonan Accepted',
             'Permohonan dibatalkan',
               "{$rootPath}/permohonan/senarai",

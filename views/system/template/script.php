@@ -63,4 +63,37 @@
     });
   }
 
+
+
+  document.getElementById('logoutBtn').addEventListener('click', function () {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(registration => {
+        const beamsClient = new PusherPushNotifications.Client({
+          instanceId: 'fdd92782-8efa-4d4a-b49d-d59a098a894d',
+          serviceWorkerRegistration: registration
+        });
+
+        beamsClient.start()
+          .then(() => {
+            // Unsubscribe the device from the current interest
+            beamsClient.removeDeviceInterest('<?php echo $_SESSION['user_details']['id'] ?>')
+              .then(() => {
+                console.log('Successfully unsubscribed from interest: <?php echo $_SESSION['user_details']['id'] ?>');
+                // Now perform logout logic in PHP (AJAX or redirection)
+                window.location.href = "<?php echo $rootPath; ?>/logout"; // Redirect to logout script
+              })
+              .catch(err => {
+                console.error('Error unsubscribing from interest', err);
+                // Still perform logout even if error
+                window.location.href = "<?php echo $rootPath; ?>/logout";
+              });
+          })
+          .catch((err) => {
+            console.error('Error initializing PusherBeams:', err);
+            // Proceed with logout even if there is an error with Pusher Beams
+            window.location.href = "<?php echo $rootPath; ?>/logout";
+          });
+      });
+    }
+  });
 </script>
