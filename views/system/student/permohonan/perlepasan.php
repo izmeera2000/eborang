@@ -225,20 +225,20 @@
                     const dateStr = formatDate(currentDate);
 
                     let html = `
-        <div class="date-block mb-4">
-            <h6>Tarikh: ${dateStr}</h6>
-            <input type="hidden" name="dates[]" value="${dateStr}">
-            <div class="row">
-                <div class="col-6">
-                    <label for="start-${dateStr}" class="form-label">Masa Mula</label>
-                    <input type="time" class="form-control" name="time_start[]" id="start-${dateStr}" min="08:00" max="18:00">
-                </div>
-                <div class="col-6">
-                    <label for="end-${dateStr}" class="form-label">Masa Tamat</label>
-                    <input type="time" class="form-control" name="time_end[]" id="end-${dateStr}" min="08:00" max="18:00">
-                </div>
-            </div>
+ <div class="date-block mb-4">
+    <h6>Tarikh: ${dateStr}</h6>
+    <input type="hidden" name="dates[]" value="${dateStr}">
+    <div class="row">
+        <div class="col-6">
+            <label for="start-${dateStr}" class="form-label">Masa Mula</label>
+            <input type="time" class="form-control" name="time_start[]" id="start-${dateStr}" min="08:00" max="17:00" onchange="validateTime(this)">
         </div>
+        <div class="col-6">
+            <label for="end-${dateStr}" class="form-label">Masa Tamat</label>
+            <input type="time" class="form-control" name="time_end[]" id="end-${dateStr}" min="08:00" max="17:00" onchange="validateTime(this)">
+        </div>
+    </div>
+</div>
         `;
 
                     $('#time-container').append(html);
@@ -261,7 +261,22 @@
             const day = String(date.getDate()).padStart(2, '0'); // ensure two digits
             return `${year}-${month}-${day}`;
         }
-    </script>
+
+
+     function validateTime(input) {
+        const minTime = '08:00';
+        const maxTime = '17:00';
+        const value = input.value;
+
+        if (value < minTime) {
+            input.setCustomValidity(`Please select a time after ${minTime}.`);
+        } else if (value > maxTime) {
+            input.setCustomValidity(`Please select a time before ${maxTime}.`);
+        } else {
+            input.setCustomValidity('');
+        }
+    }
+     </script>
 
 
 
