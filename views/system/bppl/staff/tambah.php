@@ -53,13 +53,17 @@
                                                     onfocusout="defocused(this)" required>
                                             </div>
                                         </div>
+                                       
+
                                         <div class="col-6">
-                                            <label class="form-label">IC</label>
+                                            <label class="form-label">IC <span class="font-weight-normal">*Sila isikan
+                                                    format IC yang
+                                                    betul</span></label>
                                             <div class="input-group">
                                                 <input name="ic" class="form-control" type="text"
-                                                    placeholder="Masukkan Nombor IC (Contoh: 2324253351)"
-                                                    required="required" onfocus="focused(this)"
-                                                    onfocusout="defocused(this)" required>
+                                                    placeholder="YYMMDD-14-2312" required="required"
+                                                    onfocus="focused(this)" onfocusout="defocused(this)" id="ic"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -94,21 +98,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-
-
-                            <div class="row">
-
-                                <!-- Card Change Password -->
-                                <div class="card mt-4">
-                                    <div class="card-header">
-                                        <h5>Maklumat Uni</h5>
-                                    </div>
-                                    <div class="card-body pt-0">
-
-                                        <div class="row">
+                                         <div class="row">
 
 
                                             <div class="col-6">
@@ -147,11 +138,11 @@
 
 
 
-
-                                    </div>
                                 </div>
                             </div>
 
+
+ 
 
 
 
@@ -235,8 +226,27 @@
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . $basePath2 . "/views/system/template/script.php"); ?>
 
- 
 
+  <script>
+
+    document.getElementById('ic').addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, ''); // Remove all non-numeric characters
+
+      // Apply the format: YYMMDD-14-2312
+      if (value.length > 6) {
+        value = value.substring(0, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 12);
+      } else if (value.length > 5) {
+        value = value.substring(0, 6) + '-' + value.substring(6, 8);
+      }
+      else
+     {
+      
+     }
+          
+      e.target.value = value;
+    });
+
+  </script>
 
 </body>
 
