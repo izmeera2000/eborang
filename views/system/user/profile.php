@@ -504,10 +504,14 @@
       // Apply the format: YYMMDD-14-2312
       if (value.length > 6) {
         value = value.substring(0, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 12);
-      } else if (value.length > 4) {
+      } else if (value.length > 5) {
         value = value.substring(0, 6) + '-' + value.substring(6, 8);
       }
-
+      else
+     {
+      
+     }
+          
       e.target.value = value;
     });
 
