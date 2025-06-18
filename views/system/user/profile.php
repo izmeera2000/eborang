@@ -101,12 +101,12 @@
                       </div>
                     </div>
                     <div class="col-6">
-                      <label class="form-label">IC <span class="font-weight-normal">*Sila isikan format IC yang betul</span></label>
+                      <label class="form-label">IC <span class="font-weight-normal">*Sila isikan format IC yang
+                          betul</span></label>
                       <div class="input-group">
                         <input name="ic" class="form-control" type="text" placeholder="YYMMDD-14-2312"
-                          required="required" onfocus="focused(this)" onfocusout="defocused(this)"
-                          value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required
-                          >
+                          required="required" onfocus="focused(this)" onfocusout="defocused(this)" id="ic"
+                          value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required>
                       </div>
                     </div>
 
@@ -496,23 +496,23 @@
       },
     });
   </script>
-<script>
+  <script>
 
-  document.getElementById('ic').addEventListener('input', function(e) {
-  let value = e.target.value.replace(/\D/g, ''); // Remove all non-numeric characters
+    document.getElementById('ic').addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, ''); // Remove all non-numeric characters
 
-  // Apply the format: YYMMDD-14-2312
-  if (value.length > 6) {
-    value = value.substring(0, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 12);
-  } else if (value.length > 4) {
-    value = value.substring(0, 6) + '-' + value.substring(6, 8);
-  }
+      // Apply the format: YYMMDD-14-2312
+      if (value.length > 6) {
+        value = value.substring(0, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 12);
+      } else if (value.length > 4) {
+        value = value.substring(0, 6) + '-' + value.substring(6, 8);
+      }
 
-  e.target.value = value;
-});
+      e.target.value = value;
+    });
 
-</script>
-  
+  </script>
+
 </body>
 
 </html>
