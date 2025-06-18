@@ -31,7 +31,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
 
             publishToBeamsInterests(
                 [$student_id ],    
-                'Permohonan Accepted ',
+                'Permohonan Accepted Oleh KB',
                 'Permohonan diterima',
                   "{$rootPath}/permohonan/senarai",
             
@@ -45,7 +45,7 @@ if (isset($_POST['permohonan_auth_accept']) || isset($_POST['permohonan_auth_dec
 
              publishToBeamsInterests(
                 [$kb_id ],     
-                'Permohonan Requested',
+                'Permohonan Request Oleh Student',
                 'A student has request',
                   "{$rootPath}/permohonan/senarai",
             

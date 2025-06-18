@@ -180,7 +180,7 @@
                             <option value="" disabled selected>Select Bengkel</option>
                             <option value="komputer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komputer' ? 'selected' : ''; ?>>Komputer</option>
                             <option value="mekatronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekatronik' ? 'selected' : ''; ?>>Mekatronik</option>
-                            <option value="mikroelektrik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mikroelektrik' ? 'selected' : ''; ?>>Mikroelektrik</option>
+                            <option value="mikroelektronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mikroelektronik' ? 'selected' : ''; ?>>Mikroelektronik</option>
                             <option value="polimer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'polimer' ? 'selected' : ''; ?>>Polimer</option>
                             <option value="mekanikal bahan" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekanikal bahan' ? 'selected' : ''; ?>>Mekanikal Bahan</option>
                             <option value="jaminan kualiti" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'jaminan kualiti' ? 'selected' : ''; ?>>Jaminan Kualiti</option>

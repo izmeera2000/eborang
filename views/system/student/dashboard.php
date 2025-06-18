@@ -131,7 +131,7 @@
           <div class="row">
             <div class="col-12 mt-4">
               <div class="card">
-                <span class="mask bg-adtec opacity-10 border-radius-lg"></span>
+                <span class="mask bg-danger opacity-10 border-radius-lg"></span>
                 <div class="card-body p-3 position-relative">
                   <div class="row">
                     <div class="col-8 text-start ">

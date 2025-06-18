@@ -18571,7 +18571,7 @@ label {
   background-image: linear-gradient(310deg, #22c55e, #98ec2d);
 }
 .bg-gradient-info {
-  background-image: linear-gradient(310deg, #0ea5e9, #06b6d4);
+  background-image: linear-gradient(310deg, #0ea5e9, #0ea5e9);
 }
 .bg-gradient-adtec {
   background-image: linear-gradient(310deg, #ef4444, #ef4444);
@@ -21605,7 +21605,7 @@ p {
   background-image: linear-gradient(310deg, #ca8a04, #ea580c);
 }
 .text-gradient.text-danger {
-  background-image: linear-gradient(310deg, #dc2626, rgb(239.8, 108.6, 173.4));
+  background-image: linear-gradient(310deg, #26c0dc, rgb(109 210 240));
 }
 .text-gradient.text-adtec {
   background-image: linear-gradient(310deg, #dc2626, rgb(239.8, 108.6, 173.4));
