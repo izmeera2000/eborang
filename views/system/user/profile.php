@@ -507,7 +507,11 @@
       } else if (value.length > 4) {
         value = value.substring(0, 6) + '-' + value.substring(6, 8);
       }
-
+      else
+     {
+      
+     }
+          
       e.target.value = value;
     });
 
