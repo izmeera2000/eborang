@@ -101,7 +101,7 @@
                       </div>
                     </div>
                     <div class="col-6">
-                      <label class="form-label">IC <span class="font-weight-normal">gunakan format </span></label>
+                      <label class="form-label">IC <span class="font-weight-normal">*Sila isikan format IC yang betul</span></label>
                       <div class="input-group">
                         <input name="ic" class="form-control" type="text" placeholder="YYMMDD-14-2312"
                           required="required" onfocus="focused(this)" onfocusout="defocused(this)"
