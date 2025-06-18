@@ -64,7 +64,7 @@
 
 
                                         // $lect = [];
-                                        $lect = "SELECT * 
+                                        $lect = "SELECT users.*, user_details.name 
                                             FROM users 
                                             LEFT JOIN user_details ON users.id = user_details.user_id
                                             WHERE users.role = '3';
