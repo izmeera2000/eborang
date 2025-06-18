@@ -142,83 +142,85 @@
                       </div>
                     </div>
                   </div>
+
+
+
+                  <?php if ($role != 'bppl' && $role != 'guard') { ?>
+
+                
+
+                      <!-- Card Change Password -->
+                      
+                        
+              
+
+                          <div class="row">
+                            <?php if ($role != 'lecturer' && $role != 'kb') { ?>
+
+                              <div class="col-6">
+                                <label class="form-label mt-4">NDP</label>
+                                <div class="input-group">
+                                  <input name="ndp" class="form-control" type="text" onfocus="focused(this)"
+                                    onfocusout="defocused(this)"
+                                    value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>" required>
+                                </div>
+                              </div>
+
+                            <?php } ?>
+
+
+                            <div class="col-6">
+                              <label class="form-label mt-4">Bengkel</label>
+                              <div class="input-group">
+                                <select name="bengkel" class="form-control" onfocus="focused(this)"
+                                  onfocusout="defocused(this)" required>
+                                  <option value="" disabled selected>Select Bengkel</option>
+                                  <option value="komputer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komputer' ? 'selected' : ''; ?>>Komputer</option>
+                                  <option value="mekatronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekatronik' ? 'selected' : ''; ?>>Mekatronik</option>
+                                  <option value="mikroelektronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mikroelektronik' ? 'selected' : ''; ?>>Mikroelektronik</option>
+                                  <option value="polimer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'polimer' ? 'selected' : ''; ?>>Polimer</option>
+                                  <option value="mekanikal bahan" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekanikal bahan' ? 'selected' : ''; ?>>Mekanikal Bahan</option>
+                                  <option value="jaminan kualiti" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'jaminan kualiti' ? 'selected' : ''; ?>>Jaminan Kualiti</option>
+                                  <option value="komposit" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komposit' ? 'selected' : ''; ?>>Komposit</option>
+                                </select>
+                              </div>
+                            </div>
+
+                          </div>
+                          <?php if ($role != 'lecturer' && $role != 'kb') { ?>
+
+                            <div class="row">
+                              <div class="col-6">
+                                <label class="form-label mt-4">Kursus</label>
+                                <div class="input-group">
+                                  <input name="kursus" class="form-control" type="text" onfocus="focused(this)"
+                                    onfocusout="defocused(this)"
+                                    value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>" required>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label mt-4">Semester</label>
+                                <div class="input-group">
+                                  <input name="semester" class="form-control" type="text" onfocus="focused(this)"
+                                    onfocusout="defocused(this)"
+                                    value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                          <?php } ?>
+
+
+
+                    
+             
+
+                  <?php } ?>
+
+
+
                 </div>
               </div>
             </div>
-
-            <?php if ($role != 'bppl' && $role != 'guard') { ?>
-
-              <div class="row">
-
-                <!-- Card Change Password -->
-                <div class="card mt-4">
-                  <div class="card-header">
-                    <h5>Maklumat Uni</h5>
-                  </div>
-                  <div class="card-body pt-0">
-
-                    <div class="row">
-                      <?php if ($role != 'lecturer' && $role != 'kb') { ?>
-
-                        <div class="col-6">
-                          <label class="form-label mt-4">NDP</label>
-                          <div class="input-group">
-                            <input name="ndp" class="form-control" type="text" onfocus="focused(this)"
-                              onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>"
-                              required>
-                          </div>
-                        </div>
-
-                      <?php } ?>
-
-
-                      <div class="col-6">
-                        <label class="form-label mt-4">Bengkel</label>
-                        <div class="input-group">
-                          <select name="bengkel" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)"
-                            required>
-                            <option value="" disabled selected>Select Bengkel</option>
-                            <option value="komputer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komputer' ? 'selected' : ''; ?>>Komputer</option>
-                            <option value="mekatronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekatronik' ? 'selected' : ''; ?>>Mekatronik</option>
-                            <option value="mikroelektronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mikroelektronik' ? 'selected' : ''; ?>>Mikroelektronik</option>
-                            <option value="polimer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'polimer' ? 'selected' : ''; ?>>Polimer</option>
-                            <option value="mekanikal bahan" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekanikal bahan' ? 'selected' : ''; ?>>Mekanikal Bahan</option>
-                            <option value="jaminan kualiti" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'jaminan kualiti' ? 'selected' : ''; ?>>Jaminan Kualiti</option>
-                            <option value="komposit" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komposit' ? 'selected' : ''; ?>>Komposit</option>
-                          </select>
-                        </div>
-                      </div>
-
-                    </div>
-                    <?php if ($role != 'lecturer' && $role != 'kb') { ?>
-
-                      <div class="row">
-                        <div class="col-6">
-                          <label class="form-label mt-4">Kursus</label>
-                          <div class="input-group">
-                            <input name="kursus" class="form-control" type="text" onfocus="focused(this)"
-                              onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>"
-                              required>
-                          </div>
-                        </div>
-                        <div class="col-6">
-                          <label class="form-label mt-4">Semester</label>
-                          <div class="input-group">
-                            <input name="semester" class="form-control" type="text" onfocus="focused(this)"
-                              onfocusout="defocused(this)"
-                              value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>" required>
-                          </div>
-                        </div>
-                      </div>
-                    <?php } ?>
-
-
-
-                  </div>
-                </div>
-              </div>
-
-            <?php } ?>
 
 
 
