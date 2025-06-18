@@ -64,7 +64,11 @@
 
 
                                         // $lect = [];
-                                        $lect = "SELECT * FROM users WHERE role='3'";
+                                        $lect = "SELECT * 
+                                            FROM users 
+                                            LEFT JOIN user_details ON users.id = user_details.user_id
+                                            WHERE users.role = '3';
+                                            ";
                                         $result = mysqli_query($conn, $lect);
 
 
@@ -72,7 +76,7 @@
                                             while ($user = mysqli_fetch_assoc($result)) {
                                                 // Do something with $user
                                                 ?>
-                                                <option value="<?php echo $user['id'] ?>"><?php echo $user['email'] ?></option>
+                                                <option value="<?php echo $user['id'] ?>"><?php echo $user['name'] ?></option>
                                                 <?php
                                             }
                                         }
@@ -263,20 +267,20 @@
         }
 
 
-     function validateTime(input) {
-        const minTime = '08:00';
-        const maxTime = '17:00';
-        const value = input.value;
+        function validateTime(input) {
+            const minTime = '08:00';
+            const maxTime = '17:00';
+            const value = input.value;
 
-        if (value < minTime) {
-            input.setCustomValidity(`Please select a time after ${minTime}.`);
-        } else if (value > maxTime) {
-            input.setCustomValidity(`Please select a time before ${maxTime}.`);
-        } else {
-            input.setCustomValidity('');
+            if (value < minTime) {
+                input.setCustomValidity(`Please select a time after ${minTime}.`);
+            } else if (value > maxTime) {
+                input.setCustomValidity(`Please select a time before ${maxTime}.`);
+            } else {
+                input.setCustomValidity('');
+            }
         }
-    }
-     </script>
+    </script>
 
 
 
