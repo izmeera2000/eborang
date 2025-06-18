@@ -496,7 +496,22 @@
       },
     });
   </script>
+<script>
 
+  document.getElementById('ic').addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, ''); // Remove all non-numeric characters
+
+  // Apply the format: YYMMDD-14-2312
+  if (value.length > 6) {
+    value = value.substring(0, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 12);
+  } else if (value.length > 4) {
+    value = value.substring(0, 6) + '-' + value.substring(6, 8);
+  }
+
+  e.target.value = value;
+});
+
+</script>
   
 </body>
 
