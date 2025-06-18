@@ -103,11 +103,15 @@
                     <div class="col-6">
                       <label class="form-label">IC</label>
                       <div class="input-group">
-                        <input name="ic" class="form-control" type="text" placeholder="2324253351" required="required"
-                          onfocus="focused(this)" onfocusout="defocused(this)"
-                          value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required>
+                        <input name="ic" class="form-control" type="text" placeholder="YYMMDD-14-2312"
+                          required="required" onfocus="focused(this)" onfocusout="defocused(this)"
+                          value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required
+                          oninput="formatIC(this)">
                       </div>
                     </div>
+
+
+
                   </div>
                   <div class="row">
                     <div class="col-12">
@@ -147,72 +151,72 @@
 
                   <?php if ($role != 'bppl' && $role != 'guard') { ?>
 
-                
-
-                      <!-- Card Change Password -->
-                      
-                        
-              
-
-                          <div class="row">
-                            <?php if ($role != 'lecturer' && $role != 'kb') { ?>
-
-                              <div class="col-6">
-                                <label class="form-label mt-4">NDP</label>
-                                <div class="input-group">
-                                  <input name="ndp" class="form-control" type="text" onfocus="focused(this)"
-                                    onfocusout="defocused(this)"
-                                    value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>" required>
-                                </div>
-                              </div>
-
-                            <?php } ?>
 
 
-                            <div class="col-6">
-                              <label class="form-label mt-4">Bengkel</label>
-                              <div class="input-group">
-                                <select name="bengkel" class="form-control" onfocus="focused(this)"
-                                  onfocusout="defocused(this)" required>
-                                  <option value="" disabled selected>Select Bengkel</option>
-                                  <option value="komputer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komputer' ? 'selected' : ''; ?>>Komputer</option>
-                                  <option value="mekatronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekatronik' ? 'selected' : ''; ?>>Mekatronik</option>
-                                  <option value="mikroelektronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mikroelektronik' ? 'selected' : ''; ?>>Mikroelektronik</option>
-                                  <option value="polimer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'polimer' ? 'selected' : ''; ?>>Polimer</option>
-                                  <option value="mekanikal bahan" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekanikal bahan' ? 'selected' : ''; ?>>Mekanikal Bahan</option>
-                                  <option value="jaminan kualiti" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'jaminan kualiti' ? 'selected' : ''; ?>>Jaminan Kualiti</option>
-                                  <option value="komposit" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komposit' ? 'selected' : ''; ?>>Komposit</option>
-                                </select>
-                              </div>
-                            </div>
+                    <!-- Card Change Password -->
 
+
+
+
+                    <div class="row">
+                      <?php if ($role != 'lecturer' && $role != 'kb') { ?>
+
+                        <div class="col-6">
+                          <label class="form-label mt-4">NDP</label>
+                          <div class="input-group">
+                            <input name="ndp" class="form-control" type="text" onfocus="focused(this)"
+                              onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['ndp'] ?? ''; ?>"
+                              required>
                           </div>
-                          <?php if ($role != 'lecturer' && $role != 'kb') { ?>
+                        </div>
 
-                            <div class="row">
-                              <div class="col-6">
-                                <label class="form-label mt-4">Kursus</label>
-                                <div class="input-group">
-                                  <input name="kursus" class="form-control" type="text" onfocus="focused(this)"
-                                    onfocusout="defocused(this)"
-                                    value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>" required>
-                                </div>
-                              </div>
-                              <div class="col-6">
-                                <label class="form-label mt-4">Semester</label>
-                                <div class="input-group">
-                                  <input name="semester" class="form-control" type="text" onfocus="focused(this)"
-                                    onfocusout="defocused(this)"
-                                    value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>" required>
-                                </div>
-                              </div>
-                            </div>
-                          <?php } ?>
+                      <?php } ?>
 
 
+                      <div class="col-6">
+                        <label class="form-label mt-4">Bengkel</label>
+                        <div class="input-group">
+                          <select name="bengkel" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)"
+                            required>
+                            <option value="" disabled selected>Select Bengkel</option>
+                            <option value="komputer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komputer' ? 'selected' : ''; ?>>Komputer</option>
+                            <option value="mekatronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekatronik' ? 'selected' : ''; ?>>Mekatronik</option>
+                            <option value="mikroelektronik" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mikroelektronik' ? 'selected' : ''; ?>>Mikroelektronik</option>
+                            <option value="polimer" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'polimer' ? 'selected' : ''; ?>>Polimer</option>
+                            <option value="mekanikal bahan" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'mekanikal bahan' ? 'selected' : ''; ?>>Mekanikal Bahan</option>
+                            <option value="jaminan kualiti" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'jaminan kualiti' ? 'selected' : ''; ?>>Jaminan Kualiti</option>
+                            <option value="komposit" <?php echo ($_SESSION['user_details']['bengkel'] ?? '') == 'komposit' ? 'selected' : ''; ?>>Komposit</option>
+                          </select>
+                        </div>
+                      </div>
 
-                    
-             
+                    </div>
+                    <?php if ($role != 'lecturer' && $role != 'kb') { ?>
+
+                      <div class="row">
+                        <div class="col-6">
+                          <label class="form-label mt-4">Kursus</label>
+                          <div class="input-group">
+                            <input name="kursus" class="form-control" type="text" onfocus="focused(this)"
+                              onfocusout="defocused(this)" value="<?php echo $_SESSION['user_details']['kursus'] ?? ''; ?>"
+                              required>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <label class="form-label mt-4">Semester</label>
+                          <div class="input-group">
+                            <input name="semester" class="form-control" type="text" onfocus="focused(this)"
+                              onfocusout="defocused(this)"
+                              value="<?php echo $_SESSION['user_details']['semester'] ?? ''; ?>" required>
+                          </div>
+                        </div>
+                      </div>
+                    <?php } ?>
+
+
+
+
+
 
                   <?php } ?>
 
@@ -493,7 +497,19 @@
     });
   </script>
 
-
+  <script>
+    function formatIC(input) {
+      let value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+      if (value.length <= 6) {
+        value = value.replace(/(\d{2})(\d{2})(\d{2})/, '$1$2$3-14-');
+      } else if (value.length <= 10) {
+        value = value.replace(/(\d{2})(\d{2})(\d{2})-14-(\d{0,4})/, '$1$2$3-14-$4');
+      } else {
+        value = value.slice(0, 12); // Limit the length to 12 digits
+      }
+      input.value = value;
+    }
+  </script>
 </body>
 
 </html>
