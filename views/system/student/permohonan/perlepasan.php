@@ -64,7 +64,7 @@
 
 
                                         // $lect = [];
-                                        $lect = "SELECT users.*, user_details.name 
+                                        $lect = "SELECT users.*, user_details.name , user_details.user_id
                                             FROM users 
                                             LEFT JOIN user_details ON users.id = user_details.user_id
                                             WHERE users.role = '3';
@@ -76,7 +76,7 @@
                                             while ($user = mysqli_fetch_assoc($result)) {
                                                 // Do something with $user
                                                 ?>
-                                                <option value="<?php echo $user['id'] ?>"><?php echo $user['name'] ?></option>
+                                                <option value="<?php echo $user['user_id'] ?>"><?php echo $user['name'] ?></option>
                                                 <?php
                                             }
                                         }
