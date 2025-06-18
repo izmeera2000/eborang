@@ -106,7 +106,7 @@
                         <input name="ic" class="form-control" type="text" placeholder="YYMMDD-14-2312"
                           required="required" onfocus="focused(this)" onfocusout="defocused(this)"
                           value="<?php echo $_SESSION['user_details']['ic'] ?? ''; ?>" required
-                          oninput="formatIC(this)">
+                          >
                       </div>
                     </div>
 
@@ -497,19 +497,7 @@
     });
   </script>
 
-  <script>
-    function formatIC(input) {
-      let value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
-      if (value.length <= 6) {
-        value = value.replace(/(\d{2})(\d{2})(\d{2})/, '$1$2$3-14-');
-      } else if (value.length <= 10) {
-        value = value.replace(/(\d{2})(\d{2})(\d{2})-14-(\d{0,4})/, '$1$2$3-14-$4');
-      } else {
-        value = value.slice(0, 12); // Limit the length to 12 digits
-      }
-      input.value = value;
-    }
-  </script>
+  
 </body>
 
 </html>
